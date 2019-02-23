@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{0EA0B9F6-54A8-4B7C-B29D-838B01321463}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServer", "WCFServer\WCFServer.csproj", "{4D36D738-D885-432E-B9F6-BA1F95A07E2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0EA0B9F6-54A8-4B7C-B29D-838B01321463}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EA0B9F6-54A8-4B7C-B29D-838B01321463}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EA0B9F6-54A8-4B7C-B29D-838B01321463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D36D738-D885-432E-B9F6-BA1F95A07E2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D36D738-D885-432E-B9F6-BA1F95A07E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D36D738-D885-432E-B9F6-BA1F95A07E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D36D738-D885-432E-B9F6-BA1F95A07E2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

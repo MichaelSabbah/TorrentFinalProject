@@ -13,5 +13,20 @@ namespace WCFServer
         public void DoWork()
         {
         }
+
+        public string FileRequest(string jsonFileRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SignIn(string jsonUserDetails)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string SignOut(string jsonUserDetails)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
