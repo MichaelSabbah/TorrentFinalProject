@@ -10,6 +10,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebPortal", "WebPortal\", "{42362246-F901-4BDB-B7A5-1F713DF56C75}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		ProjectReferences = "{154bfe8b-583b-42d6-8aba-fa5d0bee9657}|DAL.dll;{453485fc-b3a0-48a3-99e9-02860fc0d18e}|Entities.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_49852"
 		Debug.AspNetCompiler.PhysicalPath = "WebPortal\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49852\"
@@ -30,6 +31,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebPortal", "WebPortal\", "
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{154BFE8B-583B-42D6-8ABA-FA5D0BEE9657}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{453485FC-B3A0-48A3-99E9-02860FC0D18E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +56,10 @@ Global
 		{154BFE8B-583B-42D6-8ABA-FA5D0BEE9657}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{154BFE8B-583B-42D6-8ABA-FA5D0BEE9657}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{154BFE8B-583B-42D6-8ABA-FA5D0BEE9657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{453485FC-B3A0-48A3-99E9-02860FC0D18E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{453485FC-B3A0-48A3-99E9-02860FC0D18E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{453485FC-B3A0-48A3-99E9-02860FC0D18E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{453485FC-B3A0-48A3-99E9-02860FC0D18E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

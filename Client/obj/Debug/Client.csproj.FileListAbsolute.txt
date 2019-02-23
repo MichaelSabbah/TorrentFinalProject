@@ -6,7 +6,6 @@ C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinal
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Client\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Client\bin\Debug\EntityFramework.xml
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Client\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Client\obj\Debug\MainWindow.g.cs
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Client\obj\Debug\App.g.cs
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Client\obj\Debug\Client_MarkupCompile.cache

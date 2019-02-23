@@ -12,12 +12,12 @@
     <form id="form1" runat="server">
 
         <div class="formContent">
-            <asp:TextBox ID="TextBox1" runat="server" placeholder="Username"></asp:TextBox>
+            <asp:TextBox ID="UserNametxt" runat="server" placeholder="Username"></asp:TextBox>
         </div>
         <p>
-            <asp:TextBox ID="TextBox2" runat="server" placeholder="Password"></asp:TextBox>
+            <asp:TextBox ID="Passwordtxt" runat="server" placeholder="Password"></asp:TextBox>
         </p>
-        <asp:Button class="button" ID="Button1" runat="server" Text="Register"/>
+        <asp:Button class="button" ID="Registerbtn" runat="server" Text="Register" OnClick="Registerbtn_Click"/>
     </form>
 </body>
 </html>
