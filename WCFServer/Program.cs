@@ -10,6 +10,7 @@ namespace WCFServer
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
