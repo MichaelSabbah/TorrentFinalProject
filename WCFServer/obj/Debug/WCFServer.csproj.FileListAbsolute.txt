@@ -1,0 +1,15 @@
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\WCFServer.exe.config
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\WCFServer.exe
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\WCFServer.pdb
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\DAL.dll
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.dll
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\DAL.pdb
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\DAL.dll.config
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.xml
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.csproj.CopyComplete
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.exe
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.pdb
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.SqlServer.xml

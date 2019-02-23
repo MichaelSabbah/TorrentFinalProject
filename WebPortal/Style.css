@@ -1,0 +1,43 @@
+﻿.button {
+    background-color: blue;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+form {
+    text-align: center;
+    border: 1px solid blue;
+    border-radius: 5px;
+    height: 300px;
+    width: 300px;
+    margin: 100px auto;
+}
+
+h1 {
+    margin: 20px;
+    background: blue;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+}
+table{
+    margin-top:-80px;
+}
+
+
+table td{
+    border:1px solid black;
+}
+
+.buttonsDiv {
+    text-align: center;
+    padding: 3px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.formContent{
+    margin-top:30%;
+}
