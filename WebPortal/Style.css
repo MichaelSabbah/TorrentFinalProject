@@ -37,7 +37,7 @@ table td{
     padding: 3px;
     margin-top: 10px;
     width: 100%;
-    height: 182px;
+    height: 133px;
 }
 
 .homePageButtons{
@@ -47,4 +47,14 @@ table td{
 
 .formContent {
     margin-top: 30%;
+}
+
+.leftFloatedLabel{
+    display:block;
+    margin-bottom:10px;
+}
+
+.totalInformation{
+    margin:10px;
+    text-align:left;
 }
