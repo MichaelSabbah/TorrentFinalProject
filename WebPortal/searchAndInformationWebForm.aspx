@@ -12,39 +12,23 @@
     <form id="form1" runat="server">
     <div class="formContent">
         <span><asp:Label ID="AllFileslbl" runat="server" Text="All Files"></asp:Label></span>
-        <table style="width:100%;">
-            <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Size</td>
-                    <td>Users</td>
-                </tr>
-            </thead>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
+        <asp:Table ID="FilesTable" runat="server" style="width:100%;">
+            <asp:TableHeaderRow>
+                    <asp:TableCell>Name</asp:TableCell>
+                    <asp:TableCell>Size</asp:TableCell>
+                    <asp:TableCell>Users</asp:TableCell>
+            </asp:TableHeaderRow>
+        </asp:Table>
+
         <asp:TextBox ID="Searchtxt" runat="server" OnTextChanged="TextBox2_TextChanged" placeholder="File name"></asp:TextBox>
         <asp:Button class="button" ID="Searchbtn" runat="server" Text="search file" />
     
     </div>
-        <p>
-            <asp:Label ID="TotalUserslbl" runat="server" Text="total Users"></asp:Label>
-            <asp:Label ID="TotalFileslbl" runat="server" Text="total files"></asp:Label>
-            <asp:Label ID="Activeserslbl" runat="server" Text="active users"></asp:Label>
-        </p>
+        <div class="totalInformation">
+            <asp:Label class="leftFloatedLabel" ID="TotalUserslbl" runat="server" Text="Total Users: "></asp:Label>
+            <asp:Label class="leftFloatedLabel" ID="TotalFileslbl" runat="server" Text="Total Files: "></asp:Label>
+            <asp:Label class="leftFloatedLabel" ID="Activeserslbl" runat="server" Text="Active Users: "></asp:Label>
+        </div>
     </form>
 </body>
 </html>

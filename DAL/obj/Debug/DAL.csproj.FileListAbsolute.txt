@@ -32,3 +32,4 @@ C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinal
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\DAL\bin\Debug\zh-Hans\System.ServiceModel.DomainServices.Server.resources.dll
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\DAL\bin\Debug\zh-Hant\System.ServiceModel.DomainServices.Server.resources.dll
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\DAL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

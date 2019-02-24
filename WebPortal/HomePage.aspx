@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="HomePage.aspx.vb" Inherits="HomePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="HomePage.aspx.cs" Inherits="HomePage" %>
 
 <!DOCTYPE html>
 
@@ -8,13 +8,14 @@
     <link rel = "stylesheet" type = "text/css" href = "Style.css"/>
 </head>
 <body>
-    <h1>Administration Portal</h1>
-    <form id="form1" runat="server">
+    <h1>Home Page</h1>
+    <form id="form2" runat="server">
         <div class="buttonsDiv homePageButtons">
-            <asp:Button class="button" ID="Button2" runat="server" Text="Registration"/>
-            <asp:Button class="button" ID="Button3" runat="server" Text="Users" />
-            <asp:Button class="button" ID="Button1" runat="server" Text="Files" />
+            <asp:Button class="button" ID="RegistrationBtn" runat="server" Text="Registration" OnClick="RegistrationBtn_Click" />
+            <asp:Button class="button" ID="UsersBtn" runat="server" Text="Users" OnClick="UsersBtn_Click" />
+            <asp:Button class="button" ID="FilesBtn" runat="server" Text="Files" OnClick="FilesBtn_Click" />
         </div>
     </form>
 </body>
 </html>
+
