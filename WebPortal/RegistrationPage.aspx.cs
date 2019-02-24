@@ -13,15 +13,24 @@ public partial class Registration : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        UserAddedSuccessfullyLabel.Visible = false;
+        UserAddedUnSuccessfullyLabel.Visible = false;
     }
 
     protected void Registerbtn_Click(object sender, EventArgs e)
     {
-        dbService.DBOperations.ClearAll();
-
         string username = UserNametxt.Text;
         string password = Passwordtxt.Text;
-        dbService.DBOperations.AddUser(username, password);
+        try
+        {
+            dbService.DBOperations.AddUser(username, password);
+            Console.WriteLine("User added successfully");
+            UserAddedSuccessfullyLabel.Visible = true;
+        }
+        catch(Exception)
+        {
+            Console.WriteLine("Error while add user");
+            UserAddedUnSuccessfullyLabel.Visible = true;
+        }
     }
 }
