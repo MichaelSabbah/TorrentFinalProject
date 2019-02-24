@@ -13,15 +13,15 @@ namespace DAL
             Console.WriteLine("In Test");
 
             Users newUser = new Users();
-            newUser.UserName = "Dani";
-            newUser.Password = "12345";
+            newUser.UserName = "SHOSHI";
+            newUser.Password = "1235";
 
             //using (TorrentDBEntities db = new TorrentDBEntities())
             //{
             TorrentDBEntities db = new TorrentDBEntities();
 
-                //db.Users.Add(newUser);
-                //db.SaveChanges();
+                db.Users.Add(newUser);
+                db.SaveChanges();
 
                 //Console.WriteLine("User added");
 

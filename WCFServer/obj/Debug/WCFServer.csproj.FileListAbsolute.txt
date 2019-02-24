@@ -13,3 +13,15 @@ C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinal
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.pdb
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\WCFServer.exe.config
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\WCFServer.exe
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\WCFServer.pdb
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\DAL.dll
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.dll
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\DAL.pdb
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.xml
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.csprojResolveAssemblyReference.cache
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.exe
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.pdb

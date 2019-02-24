@@ -28,8 +28,9 @@ namespace DAL
                 foreach (Users user in db.Users)
                 {
                     db.Users.Remove(user);
-                    db.SaveChanges();
+                   
                 }
+                db.SaveChanges();
             }
         }
 
