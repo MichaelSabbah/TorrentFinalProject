@@ -29,5 +29,13 @@ namespace Entities
         {
             get; set;
         }
+        public bool Connected
+        {
+            get; set;
+        }
+        public bool Enabled
+        {
+            get;set;
+        }
     }
 }

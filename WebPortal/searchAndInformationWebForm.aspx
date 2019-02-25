@@ -21,7 +21,7 @@
         </asp:Table>
 
         <asp:TextBox ID="Searchtxt" runat="server" OnTextChanged="TextBox2_TextChanged" placeholder="File name"></asp:TextBox>
-        <asp:Button class="button" ID="Searchbtn" runat="server" Text="search file" />
+        <asp:Button class="button" ID="Searchbtn" runat="server" Text="search file" OnClick="Searchbtn_Click" />
     
     </div>
         <div class="totalInformation">

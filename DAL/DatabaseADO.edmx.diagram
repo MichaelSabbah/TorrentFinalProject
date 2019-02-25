@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="434bab8b49df47fa9b772d0c4fcdae27" Name="Diagram1">
         <EntityTypeShape EntityType="TorrentDBModel.Users" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TorrentDBModel.Files" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

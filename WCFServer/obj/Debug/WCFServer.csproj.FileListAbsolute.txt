@@ -25,3 +25,5 @@ C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\EntityFra
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.csprojResolveAssemblyReference.cache
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.exe
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\obj\Debug\WCFServer.pdb
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\Entities.dll
+C:\Users\dudy\Documents\GitHub\TorrentFinalProject\WCFServer\bin\Debug\Entities.pdb

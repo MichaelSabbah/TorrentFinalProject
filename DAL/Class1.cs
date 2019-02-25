@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,29 +13,31 @@ namespace DAL
         {
             Console.WriteLine("In Test");
 
-            Users newUser = new Users();
-            newUser.UserName = "SHOSHI";
-            newUser.Password = "1235";
+            //Users newUser = new Users();
+            //newUser.UserName = "SHOSHI";
+            //newUser.Password = "1235";
+            Files f = new Files();
+            f.FileName = "dido2.txt";
+            f.Id = 1234;
+            f.IP = "192";
+            f.Port = "8081";
+            f.Size = 39.5;
 
-            //using (TorrentDBEntities db = new TorrentDBEntities())
-            //{
             TorrentDBEntities db = new TorrentDBEntities();
-
-                db.Users.Add(newUser);
+           // DBOperations dop = new DBOperations();
+            //    db.Users.Add(newUser);
+                db.Files.Add(f);
                 db.SaveChanges();
+                //List<File> list = dop.getAllFiles();
 
-                //Console.WriteLine("User added");
+            //Console.WriteLine("User added");
 
-                var result = from user in db.Users
-                             select user.UserName;
-
-                Console.WriteLine("get result, result = " + result);
-
-                foreach (string userName in result)
-                {
-                    Console.WriteLine("{0}", userName);
-                }
-            //}
+            //var result = from fi in list
+            //             select fi.Size;
+            //    foreach(float userName in result)
+            //    {
+            //        Console.WriteLine("{0}", userName);
+            //    }
         }
     }
 }
