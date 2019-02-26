@@ -13,7 +13,7 @@
         <div class="formContent">
             <asp:TextBox class="input" ID="UserNametxt" runat="server" OnTextChanged="UserNametxt_TextChanged" placeholder="Username"></asp:TextBox>
             <div class="buttonsDiv usersManagementDiv">
-                <asp:Button class="button" ID="Enablebtn" runat="server" Text="Enable" />
+                <asp:Button class="button" ID="Enablebtn" runat="server" Text="Enable" OnClick="Enablebtn_Click" />
                 <asp:Button class="button" ID="Disablebtn" runat="server" Text="Disaable" />
                 <asp:Button class="button" ID="Updatebtn" runat="server" Text="Update" />
                 <asp:Button class="button" ID="Deletebtn" runat="server" Text="Delete" />
