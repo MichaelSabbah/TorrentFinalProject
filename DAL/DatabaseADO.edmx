@@ -14,6 +14,7 @@
           <Property Name="Size" Type="float" Nullable="false" />
           <Property Name="IP" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Port" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -21,8 +22,10 @@
           </Key>
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Connected" Type="bit" />
-          <Property Name="Enabled" Type="bit" />
+          <Property Name="Connected" Type="bit" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Port" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="TorrentDBModelStoreContainer">
           <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
@@ -38,8 +41,10 @@
           </Key>
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Connected" Type="Boolean" />
-          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="Connected" Type="Boolean" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Port" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="TorrentDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.Users" />
@@ -54,6 +59,7 @@
           <Property Name="Size" Type="Double" Nullable="false" />
           <Property Name="IP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Port" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -64,6 +70,8 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="TorrentDBModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="Connected" ColumnName="Connected" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -74,6 +82,7 @@
           <EntitySetMapping Name="Files">
             <EntityTypeMapping TypeName="TorrentDBModel.Files">
               <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Port" ColumnName="Port" />
                 <ScalarProperty Name="IP" ColumnName="IP" />
                 <ScalarProperty Name="Size" ColumnName="Size" />

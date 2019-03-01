@@ -10,8 +10,9 @@ public partial class HomePage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-         DBService dbService = DBService.getInstance();
-         dbService.DBOperations.ClearAll();
+        DBService dbService = DBService.getInstance();
+        dbService.DBOperations.ClearAll();
+        dbService.DBOperations.AddFile();
     }
 
     protected void RegistrationBtn_Click(object sender, EventArgs e)

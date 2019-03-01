@@ -68,6 +68,7 @@
       <DependentUpon>DatabaseADO.edmx</DependentUpon>
     </Compile>
     <Compile Include="DBOperations.cs" />
+    <Compile Include="DBUtils.cs" />
     <Compile Include="Files.cs">
       <DependentUpon>DatabaseADO.tt</DependentUpon>
     </Compile>
@@ -104,6 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj">

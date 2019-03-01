@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class User
+    public class User
     {
-
         public User()
         {
 
         }
 
-        public User(string userName, string password)
+        public User(string userName, string password, bool connected, bool enabled)
         {
             UserName = userName;
             Password = password;
+            Connected = connected;
+            Enabled = enabled;
         }
 
         public string UserName
