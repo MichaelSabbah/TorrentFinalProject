@@ -21,6 +21,22 @@ namespace DAL
             }
         }
 
+        public User GetUserByUsername(string userName)
+        {
+            User userResult = null;
+
+            using (TorrentDBEntities db = new TorrentDBEntities())
+            {
+                var receivedUser = (from user in db.Users
+                                    where user.UserName.Equals(userName)
+                                    select user).Single();
+
+                userResult = DBUtils.UsersToUser(receivedUser);
+            }
+
+            return userResult;
+        }
+
         public void ClearAll()
         {
             using (TorrentDBEntities db = new TorrentDBEntities())
@@ -29,18 +45,24 @@ namespace DAL
                 {
                     db.Users.Remove(user);
                 }
+
+                foreach (Files file in db.Files)
+                {
+                    db.Files.Remove(file);
+                }
+
                 db.SaveChanges();
             }
         }
 
-        public List<File> getAllFiles()
+        public List<File> GetAllFiles()
         {
             List<File> list = new List<File>();
             using (TorrentDBEntities db = new TorrentDBEntities())
             {
                 foreach(Files f in db.Files)
                 {
-                    list.Add(FilesToFile(f));
+                    list.Add(DBUtils.FilesToFile(f));
                 }
             }
             return list;
@@ -59,55 +81,88 @@ namespace DAL
             }
         }
 
-        public File getFileByName(string name)
+        public File GetFileByName(string name)
         {
             using (TorrentDBEntities db = new TorrentDBEntities())
             {
                  Files fileInDB = (from f in db.Files
                                  where f.FileName == name
                                  select f).FirstOrDefault();
-                return FilesToFile(fileInDB);
+                return DBUtils.FilesToFile(fileInDB);
             }
         }
 
-        public void RemoveUser(string userDetails)
+        public void RemoveUser(string username)
         {
-            throw new NotImplementedException();
-        }
-        public File FilesToFile(Files files)
-        {
-            File result = new File();
-            if (files != null)
+            using (TorrentDBEntities db = new TorrentDBEntities())
             {
-                result.Id = files.Id;
-                result.FileName = files.FileName;
-                result.IP = files.IP;
-                result.Port = files.Port;
-                result.Size = files.Size;
+                Users user = db.Users.Find(username);
+                db.Users.Remove(user);
+                db.SaveChanges();
             }
-                return result;
         }
 
-        public int getAmountOfUsers()
-        {
-            TorrentDBEntities db = new TorrentDBEntities();
-            return db.Users.Count();
-        }
-        public int getAmountOfFiles()
+        public int GetAmountOfFiles()
         {
             TorrentDBEntities db = new TorrentDBEntities();
             return db.Files.Count();
         }
-        public int getAmountOfActiveUsers()
+
+        public int GetAmountOfUsers()
+        {
+            TorrentDBEntities db = new TorrentDBEntities();
+            return db.Users.Count();
+        }
+
+        public int GetAmountOfActiveUsers()
         {
             TorrentDBEntities db = new TorrentDBEntities();
             int count = 0;
-            foreach(Users user in db.Users)
+            foreach (Users user in db.Users)
             {
-                if (user.Connected==true)
+                if (user.Connected == true)
                     count++;
             }
             return count;
+        }
+
+        public void UpdateUser(User updatedUser, string existingUsername)
+        {
+            using (TorrentDBEntities db = new TorrentDBEntities())
+            {
+                var receivedUser = db.Users.Find(existingUsername);
+                //var receivedUser = (from user in db.Users
+                //                   where user.UserName.Equals(updatedUser.UserName)
+                //                   select user).Single();
+                receivedUser.UserName = updatedUser.UserName;
+                receivedUser.Password = updatedUser.Password;
+                receivedUser.Enabled = updatedUser.Enabled;
+                receivedUser.Connected = updatedUser.Connected;
+
+                db.SaveChanges();
+            }
+        }
+
+        public void AddFile()
+        {
+            using (TorrentDBEntities db = new TorrentDBEntities())
+            {
+                try
+                {
+                    Files file = new Files();
+                    file.Id = 1;
+                    file.FileName = "filename";
+                    file.IP = "11";
+                    file.Port = "11";
+                    file.Size = 123;
+                    db.Files.Add(file);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Exception = " + e.StackTrace);
+                }
+            }
         }
     }
 }

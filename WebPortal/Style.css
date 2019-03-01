@@ -85,3 +85,23 @@ table td{
 .usersManagementDiv{
     margin-top:30px;
 }
+
+#UserEnabledRadioButtons{
+    width:100%;
+}
+
+.testDiv{
+    padding:10px;
+}
+
+.radioButtton{
+    border:none;
+}
+
+.radioButtonsGroup{
+    width:100%;
+}
+
+.RadioButtonList{
+    width:100%;
+}
