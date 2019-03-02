@@ -71,7 +71,36 @@ namespace WCFServer
 
         public bool SignOut(string jsonUserDetails)
         {
-            throw new NotImplementedException();
+            try
+            {
+                
+                JObject jsonUserDetailsObject = JObject.Parse(jsonUserDetails);
+                string username = (string)jsonUserDetailsObject.GetValue("Username");
+                string password = (string)jsonUserDetailsObject.GetValue("Password");
+
+                User userEntity = dbOperations.GetUserByUsername(username);
+
+                if (userEntity != null)
+                {
+                    if (userEntity.Enabled && userEntity.Password.Equals(password))
+                    {
+                        userEntity.Connected = false;
+                        connectedUsers.Remove(username);
+                        dbOperations.UpdateUser(userEntity, username);
+                        dbOperations.removeFilesByUserName(username);
+                        Console.WriteLine("SignOut succssfully");
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (JsonReaderException ex)
+            {
+                Console.WriteLine("jsonUserDetails is not a valid JSON format");
+                Console.WriteLine(ex.StackTrace);
+            }
+
+            return true;
         }
     }
 }

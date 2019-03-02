@@ -20,5 +20,6 @@ namespace DAL
         int GetAmountOfActiveUsers();
         User GetUserByUsername(string userName);
         void UpdateUser(User user, string existingUsername);
+        void removeFilesByUserName(string username);
     }
 }
