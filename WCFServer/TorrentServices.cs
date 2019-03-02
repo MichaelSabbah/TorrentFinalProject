@@ -8,6 +8,8 @@ using Entities;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using DAL;
+using System.IO;
+using WCFServer.TO;
 
 namespace WCFServer
 {
@@ -15,11 +17,8 @@ namespace WCFServer
     public class TorrentServices : ITorrentServices
     {
 
-        private DBOperations dbOerations = new DBOperations();
-
-        public void DoWork()
-        {
-        }
+        private DBOperations dbOperations = new DBOperations();
+        private Dictionary<string,User> connectedUsers = new Dictionary<string, User>();
 
         public string FileRequest(string jsonFileRequest)
         {
@@ -28,21 +27,27 @@ namespace WCFServer
 
         public bool SignIn(string jsonUserDetails)
         {
-
             Console.WriteLine("In SignIn...");
             
             try
             {
+                UserTO userTO = JsonConvert.DeserializeObject<UserTO>(jsonUserDetails);
                 JObject jsonUserDetailsObject = JObject.Parse(jsonUserDetails);
-                string username = (string)jsonUserDetailsObject.GetValue(AppConstants.USERNAME_ATTRIBUTE);
-                string password = (string)jsonUserDetailsObject.GetValue(AppConstants.PASSWORD_ATTRIBUTE);
-                User user = dbOerations.GetUserByUsername(username);
-                if(user != null)
+                string username = userTO.Username;
+                string password = userTO.Password;
+
+                User userEntity = dbOperations.GetUserByUsername(username);
+
+                if (userEntity != null)
                 {
-                    if (user.Enabled && user.Password.Equals(password))
+                    if (userEntity.Enabled && userEntity.Password.Equals(password))
                     {
-                        user.Connected = true;
-                        dbOerations.UpdateUser(user, username);
+                        userEntity.Connected = true;
+                        userEntity.IP = userTO.IP;
+                        userEntity.Port = userTO.Port;
+                        //connectedUsers.Add(username,userEntity);
+                        dbOperations.UpdateUser(userEntity, username);
+                        dbOperations.AddFilesByUser(WCFServerUtils.FilesListByUser(userTO));
                         Console.WriteLine("SignIn succssfully");
                         return true;
                     }

@@ -8,24 +8,22 @@ namespace Entities
 {
     public class File
     {
-        private double size;
-
         public File()
         {
             FileName = "";
         }
-        public File(int id, string fileName, double size, string port, string iP)
+
+        public File(int id, string fileName, double size, string username)
         {
             Id = id;
             FileName = fileName;
-            this.Size = size;
-            Port = port;
-            IP = iP;
+            Size = size;
+            Username = username;
         }
 
         public int Id
         {
-            get;set;
+            get; set;
         }
         public string FileName
         {
@@ -35,11 +33,7 @@ namespace Entities
         {
             get; set;
         }
-        public string Port
-        {
-            get; set;
-        }
-        public string IP
+        public string Username
         {
             get; set;
         }

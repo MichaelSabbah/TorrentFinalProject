@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 using WCFServer;
 using System.Net;
+using Entities;
+using WCFServer.TO;
+using Newtonsoft.Json;
 
 namespace ClienTest
 {
@@ -30,7 +33,31 @@ namespace ClienTest
 
             Console.WriteLine("Channl proxy created");
 
-            string userDetails = "{username : \"Amir\",password : \"12345\"}";
+            Console.WriteLine("Test SignIn");
+
+            List<FileTO> files = new List<FileTO>();
+            files.Add(new FileTO("file1", 10));
+            files.Add(new FileTO("file2", 15));
+
+            UserTO userTO = new UserTO();
+            userTO.Username = "Amir";
+            userTO.Password = "12345";
+            userTO.IP = "123.123.123.123";
+            userTO.Port = "1234";
+            userTO.Files = files;
+
+            string userDetails = "";
+
+            try
+            {
+                userDetails = JsonConvert.SerializeObject(userTO);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+
+            Console.WriteLine("userDetails = " + userDetails);
 
             bool signInResult = proxy.SignIn(userDetails);
 

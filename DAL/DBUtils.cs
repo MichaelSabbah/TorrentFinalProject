@@ -28,18 +28,32 @@ namespace DAL
 
         public static File FilesToFile(Files files)
         {
-            File result = new File();
+            File file = new File();
 
             if (files != null)
             {
-                result.Id = files.Id;
-                result.FileName = files.FileName;
-                result.IP = files.IP;
-                result.Port = files.Port;
-                result.Size = files.Size;
+                file.Id = files.Id;
+                file.FileName = files.FileName;
+                file.Size = files.Size;
+                file.Username = files.Username;
             }
 
-            return result;
+            return file;
+        }
+
+        public static File FileToFiles(Files files)
+        {
+            File file = new File();
+
+            if (files != null)
+            {
+                file.Id = files.Id;
+                file.FileName = files.FileName;
+                file.Size = files.Size;
+                file.Username = files.Username;
+            }
+
+            return file;
         }
     }
 }

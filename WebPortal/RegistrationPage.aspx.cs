@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DAL;
+using Entities;
 
 public partial class Registration : System.Web.UI.Page
 {
@@ -23,7 +24,14 @@ public partial class Registration : System.Web.UI.Page
         string password = Passwordtxt.Text;
         try
         {
-            dbService.DBOperations.AddUser(username, password);
+            User user = new User();
+            user.UserName = username;
+            user.Password = password;
+            user.Enabled = true;
+            user.Connected = false;
+            user.IP = "";
+            user.Port = "";
+            dbService.DBOperations.AddUser(user);
             Console.WriteLine("User added successfully");
             UserAddedSuccessfullyLabel.Visible = true;
         }

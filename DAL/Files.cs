@@ -17,8 +17,6 @@ namespace DAL
         public int Id { get; set; }
         public string FileName { get; set; }
         public double Size { get; set; }
-        public string IP { get; set; }
-        public string Port { get; set; }
         public string Username { get; set; }
     }
 }
