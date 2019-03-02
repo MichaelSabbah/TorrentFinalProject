@@ -60,8 +60,9 @@ namespace ClienTest
             Console.WriteLine("userDetails = " + userDetails);
 
             bool signInResult = proxy.SignIn(userDetails);
-
             Console.WriteLine("SignIn called - Result = " + signInResult);
+            bool signOutResulr = proxy.SignOut(userDetails);
+            Console.WriteLine("signOut={0}",signOutResulr);
 
         }
     }

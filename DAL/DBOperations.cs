@@ -134,6 +134,20 @@ namespace DAL
             }
         }
 
+        public void removeFilesByUserName(string username)
+        {
+            using (TorrentDBEntities db = new TorrentDBEntities())
+            {
+                foreach(Files file in db.Files)
+                {
+                    if (file.Username.Equals(username))
+                        db.Files.Remove(file);
+                }
+                db.SaveChanges();
+            }
+
+        }
+
         public int GetAmountOfFiles()
         {
             TorrentDBEntities db = new TorrentDBEntities();

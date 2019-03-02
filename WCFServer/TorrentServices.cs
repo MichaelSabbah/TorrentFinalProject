@@ -91,7 +91,6 @@ namespace WCFServer
         {
             try
             {
-
                 JObject jsonUserDetailsObject = JObject.Parse(jsonUserDetails);
                 string username = (string)jsonUserDetailsObject.GetValue("Username");
                 string password = (string)jsonUserDetailsObject.GetValue("Password");
@@ -106,6 +105,7 @@ namespace WCFServer
                         connectedUsers.Remove(username);
                         dbOperations.UpdateUser(userEntity, username);
                         dbOperations.RemoveFilesByUserName(username);
+
                         Console.WriteLine("SignOut succssfully");
                         return true;
                     }
