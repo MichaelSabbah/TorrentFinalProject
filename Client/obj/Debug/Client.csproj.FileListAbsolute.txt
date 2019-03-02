@@ -26,7 +26,6 @@ C:\Users\dudy\Documents\GitHub\TorrentFinalProject\Client\bin\Debug\EntityFramew
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\Client\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\Client\bin\Debug\EntityFramework.xml
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\Client\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\dudy\Documents\GitHub\TorrentFinalProject\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\Client\obj\Debug\MainWindow.g.cs
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\Client\obj\Debug\App.g.cs
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\Client\obj\Debug\Client_MarkupCompile.cache

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\DAL\DatabaseADO.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\dudy\Documents\GitHub\TorrentFinalProject\DAL\DatabaseADO.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
