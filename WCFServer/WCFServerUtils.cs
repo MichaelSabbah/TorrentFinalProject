@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using DAL;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace WCFServer
 {
     public class WCFServerUtils
     {
+        private static DBOperations dbOperations = new DBOperations();
+
         public static List<File> FilesListByUser(UserTO user)
         {
             List<File> files = new List<File>();
@@ -27,6 +30,25 @@ namespace WCFServer
         public static void RemoveUserFiles(string IP)
         {
 
+        }
+
+        public static List<Peer> GetAllSharingPeers(List<File> files)
+        {
+            List<Peer> peers = new List<Peer>();
+            foreach(File file in files)
+            {
+                User user = dbOperations.GetUserByUsername(file.Username);
+                if(user != null)
+                {
+                    if(user.Enabled && user.Connected)
+                    {
+                        Peer peer = new Peer();
+                        peer.IP = user.IP;
+                        peer.Port = user.Port;
+                    }
+                }
+            }
+            return peers;
         }
     }
 }

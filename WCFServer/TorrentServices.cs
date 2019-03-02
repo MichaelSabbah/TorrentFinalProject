@@ -17,16 +17,34 @@ namespace WCFServer
     {
 
         private DBOperations dbOperations = new DBOperations();
-        private Dictionary<string, UserTO> connectedUsers = new Dictionary<string, UserTO>();
-
-        public void DoWork()
-        {
-        }
+        private static Dictionary<string, UserTO> connectedUsers = new Dictionary<string, UserTO>();
 
         public string FileRequest(string jsonFileRequest)
         {
-            //List<FileTO>
-            return null;
+            FileRequestTO fileRequestTO = JsonConvert.DeserializeObject<FileRequestTO>(jsonFileRequest);
+            string jsonFileSharingDetails = null;
+            User userEntity = dbOperations.GetUserByUsername(fileRequestTO.Username);
+            if(userEntity != null) //User exist
+            {
+                if(userEntity.Enabled && userEntity.Password.Equals(fileRequestTO.Password))//Correct password
+                {
+                    List<File> files = dbOperations.GetAllFileSharingReferencesByFileName(fileRequestTO.FileName);
+                    FileSharingDetailsTO fileSharingDetailsTO = new FileSharingDetailsTO();
+                    fileSharingDetailsTO.FileName = fileRequestTO.FileName;
+                    fileSharingDetailsTO.Size = 0;
+                    fileSharingDetailsTO.Peers = new List<Peer>();
+                    if (files.Count > 0) //File exist
+                    {
+                        fileSharingDetailsTO.Size = files.First().Size;
+                        fileSharingDetailsTO.Peers = WCFServerUtils.GetAllSharingPeers(files);
+                        jsonFileSharingDetails = JsonConvert.SerializeObject(fileSharingDetailsTO);
+                    }
+                    return jsonFileSharingDetails;
+                }
+                Console.WriteLine("User is not enabled or password is incorrect");
+            }
+            Console.WriteLine("User with username {0} not exist.", fileRequestTO.Username);
+            return jsonFileSharingDetails;
         }
 
         public bool SignIn(string jsonUserDetails)
@@ -71,7 +89,36 @@ namespace WCFServer
 
         public bool SignOut(string jsonUserDetails)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                JObject jsonUserDetailsObject = JObject.Parse(jsonUserDetails);
+                string username = (string)jsonUserDetailsObject.GetValue("Username");
+                string password = (string)jsonUserDetailsObject.GetValue("Password");
+
+                User userEntity = dbOperations.GetUserByUsername(username);
+
+                if (userEntity != null)
+                {
+                    if (userEntity.Enabled && userEntity.Password.Equals(password))
+                    {
+                        userEntity.Connected = false;
+                        connectedUsers.Remove(username);
+                        dbOperations.UpdateUser(userEntity, username);
+                        dbOperations.RemoveFilesByUserName(username);
+                        Console.WriteLine("SignOut succssfully");
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (JsonReaderException ex)
+            {
+                Console.WriteLine("jsonUserDetails is not a valid JSON format");
+                Console.WriteLine(ex.StackTrace);
+            }
+
+            return true;
         }
     }
 }

@@ -56,6 +56,25 @@ namespace DAL
             }
         }
 
+        public List<File> GetAllFileSharingReferencesByFileName(string fileName)
+        {
+            List<File> files = new List<File>();
+            using(TorrentDBEntities db = new TorrentDBEntities())
+            {
+
+                var filesReceived = from file in db.Files
+                                    where file.FileName == fileName
+                                    select file;
+
+                foreach(Files dbFile in filesReceived)
+                {
+                    File file = JsonConvert.DeserializeObject<File>(JsonConvert.SerializeObject(dbFile));
+                    files.Add(file);
+                }
+            }
+            return files;
+        }
+
         public List<File> GetAllFiles()
         {
             List<File> list = new List<File>();
@@ -176,6 +195,20 @@ namespace DAL
                     Console.WriteLine("Exception = " + e.StackTrace);
                 }
             }
+        }
+
+        public void RemoveFilesByUserName(string username)
+        {
+            using (TorrentDBEntities db = new TorrentDBEntities())
+            {
+                foreach (Files file in db.Files)
+                {
+                    if (file.Username.Equals(username))
+                        db.Files.Remove(file);
+                }
+                db.SaveChanges();
+            }
+
         }
     }
 }
