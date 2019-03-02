@@ -23,7 +23,7 @@ namespace WCFServer
 
         public string FileRequest(string jsonFileRequest)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public bool SignIn(string jsonUserDetails)
