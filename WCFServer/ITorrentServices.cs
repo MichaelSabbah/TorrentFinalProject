@@ -18,6 +18,6 @@ namespace WCFServer
         string FileRequest(string jsonFileRequest);
 
         [OperationContract]
-        string SignOut(string jsonUserDetails);
+        bool SignOut(string jsonUserDetails);
     }
 }

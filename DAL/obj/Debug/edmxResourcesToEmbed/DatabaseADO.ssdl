@@ -4,11 +4,9 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FileName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Size" Type="float" Nullable="false" />
-    <Property Name="IP" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Port" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">

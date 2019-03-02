@@ -17,8 +17,6 @@
       <EntityTypeMapping TypeName="TorrentDBModel.Files">
         <MappingFragment StoreEntitySet="Files">
           <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Port" ColumnName="Port" />
-          <ScalarProperty Name="IP" ColumnName="IP" />
           <ScalarProperty Name="Size" ColumnName="Size" />
           <ScalarProperty Name="FileName" ColumnName="FileName" />
           <ScalarProperty Name="Id" ColumnName="Id" />

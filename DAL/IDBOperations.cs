@@ -9,7 +9,7 @@ namespace DAL
 {
     interface IDBOperations
     {
-        void AddUser(string username, string password);
+        void AddUser(User user);
         void RemoveUser(string userDetails);
         void GetAllUsers();
         void ClearAll();

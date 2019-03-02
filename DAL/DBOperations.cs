@@ -4,19 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities;
+using Newtonsoft.Json;
 
 namespace DAL
 {
     public class DBOperations : IDBOperations
     {
-        public void AddUser(string username, string password)
+        public void AddUser(User user)
         {
             using(TorrentDBEntities db = new TorrentDBEntities())
             {
-                Users user = new Users();
-                user.UserName = username;
-                user.Password = password;
-                db.Users.Add(user);
+                Users dbUser = JsonConvert.DeserializeObject<Users>(JsonConvert.SerializeObject(user));
+                db.Users.Add(dbUser);
                 db.SaveChanges();
             }
         }
@@ -68,6 +67,19 @@ namespace DAL
                 }
             }
             return list;
+        }
+
+        public void AddFilesByUser(List<File> files)
+        {
+            using (TorrentDBEntities db = new TorrentDBEntities())
+            {
+                foreach (File file in files)
+                {
+                    Files dbFile = JsonConvert.DeserializeObject<Files>(JsonConvert.SerializeObject(file));
+                    db.Files.Add(dbFile);
+                }
+                db.SaveChanges();
+            }
         }
 
         public void GetAllUsers()
@@ -140,6 +152,8 @@ namespace DAL
                 receivedUser.Password = updatedUser.Password;
                 receivedUser.Enabled = updatedUser.Enabled;
                 receivedUser.Connected = updatedUser.Connected;
+                receivedUser.IP = updatedUser.IP;
+                receivedUser.Port = updatedUser.Port;
 
                 db.SaveChanges();
             }
@@ -154,8 +168,6 @@ namespace DAL
                     Files file = new Files();
                     file.Id = 1;
                     file.FileName = "filename";
-                    file.IP = "11";
-                    file.Port = "11";
                     file.Size = 123;
                     db.Files.Add(file);
                     db.SaveChanges();
