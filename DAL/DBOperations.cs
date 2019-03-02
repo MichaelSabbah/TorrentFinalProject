@@ -27,13 +27,15 @@ namespace DAL
 
             using (TorrentDBEntities db = new TorrentDBEntities())
             {
-                var receivedUser = (from user in db.Users
+                Users receivedUser = (from user in db.Users
                                     where user.UserName.Equals(userName)
-                                    select user).Single();
+                                    select user).FirstOrDefault();
 
-                userResult = DBUtils.UsersToUser(receivedUser);
+                if(receivedUser != null)
+                {
+                    userResult = DBUtils.UsersToUser(receivedUser);
+                }
             }
-
             return userResult;
         }
 

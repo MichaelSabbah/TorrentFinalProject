@@ -17,8 +17,10 @@ namespace DAL
             {
                 user.UserName = users.UserName;
                 user.Password = users.Password;
-                user.Connected = users.Connected.Value;
-                user.Enabled = users.Enabled.Value;
+                user.Connected = users.Connected;
+                user.Enabled = users.Enabled;
+                user.IP = users.IP;
+                user.Port = users.Port;
             }
 
             return user;

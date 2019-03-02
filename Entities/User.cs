@@ -13,12 +13,14 @@ namespace Entities
 
         }
 
-        public User(string userName, string password, bool connected, bool enabled)
+        public User(string userName, string password, bool connected, bool enabled,string ip, string port)
         {
             UserName = userName;
             Password = password;
             Connected = connected;
             Enabled = enabled;
+            IP = ip;
+            Port = port;
         }
 
         public string UserName
@@ -35,6 +37,14 @@ namespace Entities
             get; set;
         }
         public bool Enabled
+        {
+            get;set;
+        }
+        public string IP
+        {
+            get;set;
+        }
+        public string Port
         {
             get;set;
         }
