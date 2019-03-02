@@ -8,7 +8,6 @@ using Entities;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using DAL;
-using System.IO;
 using WCFServer.TO;
 
 namespace WCFServer
@@ -18,7 +17,11 @@ namespace WCFServer
     {
 
         private DBOperations dbOperations = new DBOperations();
-        private Dictionary<string,User> connectedUsers = new Dictionary<string, User>();
+        private Dictionary<string, UserTO> connectedUsers = new Dictionary<string, UserTO>();
+
+        public void DoWork()
+        {
+        }
 
         public string FileRequest(string jsonFileRequest)
         {
@@ -29,7 +32,7 @@ namespace WCFServer
         public bool SignIn(string jsonUserDetails)
         {
             Console.WriteLine("In SignIn...");
-            
+
             try
             {
                 UserTO userTO = JsonConvert.DeserializeObject<UserTO>(jsonUserDetails);
@@ -46,13 +49,13 @@ namespace WCFServer
                         userEntity.Connected = true;
                         userEntity.IP = userTO.IP;
                         userEntity.Port = userTO.Port;
-                        connectedUsers.Add(username,userEntity);
+                        connectedUsers.Add(username, userTO);
                         dbOperations.UpdateUser(userEntity, username);
                         dbOperations.AddFilesByUser(WCFServerUtils.FilesListByUser(userTO));
                         Console.WriteLine("SignIn succssfully");
                         return true;
                     }
-                    Console.WriteLine("The password {0} is incorrect for username {1}",password, username);
+                    Console.WriteLine("The password {0} is incorrect for username {1}", password, username);
                 }
                 Console.WriteLine("User with username {0} no exist", username);
                 return false;
