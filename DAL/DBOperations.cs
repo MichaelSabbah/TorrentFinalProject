@@ -86,7 +86,6 @@ namespace DAL
         {
             using (TorrentDBEntities db = new TorrentDBEntities())
             {
-
                 Console.WriteLine("Users:");
                 foreach (Users user in db.Users)
                 {
