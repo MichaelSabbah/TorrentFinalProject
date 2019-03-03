@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TO\FileRequestTO.cs" />
     <Compile Include="TO\FileSharingDetailsTO.cs" />
     <Compile Include="TO\FileTO.cs" />
     <Compile Include="ITorrentServices.cs" />

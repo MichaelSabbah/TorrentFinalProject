@@ -45,6 +45,7 @@ namespace WCFServer
                         Peer peer = new Peer();
                         peer.IP = user.IP;
                         peer.Port = user.Port;
+                        peers.Add(peer);
                     }
                 }
             }

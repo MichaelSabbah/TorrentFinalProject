@@ -59,11 +59,24 @@ namespace ClienTest
 
             Console.WriteLine("userDetails = " + userDetails);
 
+            //SignIn Test
             bool signInResult = proxy.SignIn(userDetails);
             Console.WriteLine("SignIn called - Result = " + signInResult);
-            bool signOutResulr = proxy.SignOut(userDetails);
-            Console.WriteLine("signOut={0}",signOutResulr);
 
+            //File Request Test
+            FileRequestTO fileRequestTO = new FileRequestTO();
+            fileRequestTO.Username = "Amir";
+            fileRequestTO.Password = "12345";
+            fileRequestTO.FileName = "file1";
+            string sharingFilesResponse = proxy.FileRequest(JsonConvert.SerializeObject(fileRequestTO));
+            Console.WriteLine("sharingFilesResponse = " + sharingFilesResponse);
+            FileSharingDetailsTO fileSharingDetailsTO = JsonConvert.DeserializeObject<FileSharingDetailsTO>(sharingFilesResponse);
+            //Console.WriteLine(" First peer = " + fileSharingDetailsTO.Peers.First().IP);
+            
+            //SignOut Test
+            bool signOutResult = proxy.SignOut(userDetails);
+            Console.WriteLine("signOut={0}", signOutResult);
+            
         }
     }
 }
