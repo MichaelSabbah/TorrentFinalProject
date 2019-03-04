@@ -1,11 +1,11 @@
 ﻿using DAL;
 using Entities;
+using SharedObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WCFServer.TO;
 
 namespace WCFServer
 {

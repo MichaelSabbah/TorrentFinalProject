@@ -38,3 +38,5 @@ C:\Users\dudy\Documents\GitHub\TorrentFinalProject\ClienTest\obj\Debug\ClientTes
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\ClienTest\obj\Debug\ClientTest.csproj.ClienTest.exe.config
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\ClienTest\obj\Debug\ClienTest.exe
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\ClienTest\obj\Debug\ClienTest.pdb
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\SharedObjects.dll
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\SharedObjects.pdb

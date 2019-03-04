@@ -23,6 +23,16 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
+            bool isConfigurationFileValid = ClientUtils.IsConfigurationFileValid();
+            if (!isConfigurationFileValid)
+            {
+                MessageBox.Show("Configuration file is invalid.");
+                System.Windows.Application.Current.Shutdown();
+            }
+            else
+            {
+                //Show application
+            }
         }
     }
 }

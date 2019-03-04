@@ -59,6 +59,10 @@
       <Project>{453485fc-b3a0-48a3-99e9-02860fc0d18e}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SharedObjects\SharedObjects.csproj">
+      <Project>{a58db32f-be1a-4843-a455-9df1960eee62}</Project>
+      <Name>SharedObjects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WCFServer\WCFServer.csproj">
       <Project>{4d36d738-d885-432e-b9f6-ba1f95a07e2a}</Project>
       <Name>WCFServer</Name>

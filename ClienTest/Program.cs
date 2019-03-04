@@ -7,7 +7,7 @@ using System.ServiceModel;
 using WCFServer;
 using System.Net;
 using Entities;
-using WCFServer.TO;
+using SharedObjects;
 using Newtonsoft.Json;
 
 namespace ClienTest
@@ -69,10 +69,17 @@ namespace ClienTest
             fileRequestTO.Password = "12345";
             fileRequestTO.FileName = "file1";
             string sharingFilesResponse = proxy.FileRequest(JsonConvert.SerializeObject(fileRequestTO));
-            Console.WriteLine("sharingFilesResponse = " + sharingFilesResponse);
-            FileSharingDetailsTO fileSharingDetailsTO = JsonConvert.DeserializeObject<FileSharingDetailsTO>(sharingFilesResponse);
+            if(sharingFilesResponse != null)
+            {
+                Console.WriteLine("sharingFilesResponse = " + sharingFilesResponse);
+                FileSharingDetailsTO fileSharingDetailsTO = JsonConvert.DeserializeObject<FileSharingDetailsTO>(sharingFilesResponse);
+            }
+            else
+            {
+                Console.WriteLine("User or Password are invalid");
+            }
             //Console.WriteLine(" First peer = " + fileSharingDetailsTO.Peers.First().IP);
-            
+
             //SignOut Test
             bool signOutResult = proxy.SignOut(userDetails);
             Console.WriteLine("signOut={0}", signOutResult);

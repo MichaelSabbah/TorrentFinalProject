@@ -55,14 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TO\FileRequestTO.cs" />
-    <Compile Include="TO\FileSharingDetailsTO.cs" />
-    <Compile Include="TO\FileTO.cs" />
     <Compile Include="ITorrentServices.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TorrentServices.cs" />
-    <Compile Include="TO\UserTO.cs" />
     <Compile Include="WCFServerUtils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +73,10 @@
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{453485fc-b3a0-48a3-99e9-02860fc0d18e}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharedObjects\SharedObjects.csproj">
+      <Project>{a58db32f-be1a-4843-a455-9df1960eee62}</Project>
+      <Name>SharedObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

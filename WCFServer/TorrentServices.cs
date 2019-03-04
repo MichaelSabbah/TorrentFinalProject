@@ -8,7 +8,7 @@ using Entities;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using DAL;
-using WCFServer.TO;
+using SharedObjects;
 
 namespace WCFServer
 {
