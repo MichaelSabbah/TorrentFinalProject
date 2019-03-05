@@ -82,7 +82,7 @@ namespace Client
             return JsonConvert.DeserializeObject<List<FileSharingDetailsTO>>(filesSharingDetails);
         }
 
-        public static List<FileTO> LoadClientFiles(ClientDetails clientDetails)
+        public static List<FileTO> LoadClientFiles()
         {
             var userFiles = new DirectoryInfo(clientDetails.UploadPath).GetFiles();
             List<FileTO> userFileTOList= new List<FileTO>();
@@ -118,7 +118,7 @@ namespace Client
         public static void SignIn()
         {
             UserTO userTO = clientDetails.ToUserTo(); 
-            userTO.Files = LoadClientFiles(clientDetails);
+            userTO.Files = LoadClientFiles();
             string jsonUserDetails = JsonConvert.SerializeObject(userTO);
             bool signInSuccess = proxy.SignIn(jsonUserDetails);
             if (!signInSuccess)

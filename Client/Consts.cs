@@ -30,5 +30,11 @@ namespace Client
         
         //Folders And Files Names
         public static string CONFIGURATION_FILE_NAME = "Config2018.xml";
+
+        //Fils Sharing Status
+        public const string UPLOADING_FILE_STATUS = "Uploading";
+        public const string DOWNLOADING_FILE_STATUS = "Downlaoding";
+        public const string NONE_STATUS = "None";
+        public const string DOWNLOAD_FILE_COMPLETED_STATUS = "Complete";
     }
 }

@@ -67,7 +67,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Views\FileTableView.cs" />
+    <Compile Include="Views\FileView.cs" />
+    <Compile Include="Views\UploadingFileView.cs" />
     <Page Include="AppWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

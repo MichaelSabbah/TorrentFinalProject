@@ -2,6 +2,7 @@
 using SharedObjects;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,26 +22,45 @@ namespace Client
     /// </summary>
     public partial class AppWindow : Window
     {
+
+        private Dictionary<string, FileSharingDetailsTO> requestedFiles;
+        //private ObservableCollection<TimeStepData> downloadingFilesDataCollection;
+        private Dictionary<string, FileSharingDetailsTO> downloadingFiles;
+        private Dictionary<string, FileSharingDetailsTO> uploadingFiles;
+
         public AppWindow()
         {
+            requestedFiles = new Dictionary<string, FileSharingDetailsTO>();
+            uploadingFiles = new Dictionary<string, FileSharingDetailsTO>();
+            downloadingFiles = new Dictionary<string, FileSharingDetailsTO>();
             InitializeComponent();
+            SetUploadListView();
         }
 
         private void SearchFileButton_Click(object sender, RoutedEventArgs e)
         {
             string fileName = FilesNameTextBox.Text;
             List<FileSharingDetailsTO> fileSharingDetailsTOList = ClientUtils.GetFilesByName(fileName);
-            FileSearchResultsView.Items.Clear();
+            FileSearchResultsListView.Items.Clear();
             foreach (FileSharingDetailsTO fileSharingDetails in fileSharingDetailsTOList)
             {
-                FileTableView fileTableView = new FileTableView(){
+                //Update dictionary - To be used next when user request to download file
+                requestedFiles.Add(fileSharingDetails.FileName, fileSharingDetails);
+
+                //Update ListView with new requested files
+                FileView fileTableView = new FileView(){
                     FileName = fileSharingDetails.FileName,
                     Size = fileSharingDetails.Size,
                     Peers = fileSharingDetails.Peers.Count
                 };
+                FileSearchResultsListView.Items.Add(fileTableView);
 
-                FileSearchResultsView.Items.Add(fileTableView);
             }
+        }
+
+        private void SetUploadListView()
+        {
+            List<FileTO> clientFiles = ClientUtils.LoadClientFiles();
         }
     }
 }
