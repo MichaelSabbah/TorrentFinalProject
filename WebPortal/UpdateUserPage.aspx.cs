@@ -18,15 +18,15 @@ public partial class UpdateUserPage : System.Web.UI.Page
         User user = dbService.DBOperations.GetUserByUsername(oldUserName);
         if(user != null)
         {
-            UsernameTextBox.Text = user.UserName;
-            PasswordTextBox.Text = user.Password;
+            UserNameValue.Text = user.UserName;
+            PasswordValue.Text = user.Password;
             if (user.Enabled)
             {
-                EnabledAndDisabledRadioList.SelectedIndex = 0;
+                EnabledDisabledValue.Text = "Enabled";
             }
             else
             {
-                EnabledAndDisabledRadioList.SelectedIndex = 1;
+                EnabledDisabledValue.Text = "Disabled";
             }
         }
     }
@@ -36,16 +36,10 @@ public partial class UpdateUserPage : System.Web.UI.Page
         User user = dbService.DBOperations.GetUserByUsername(oldUserName);
         if (user != null)
         {
-            if (!IsPostBack)
-            {
-                HtmlInputText htmlInputText;
-                htmlInputText = FindControl("UsernameTextBox") as HtmlInputText;
-                user.UserName = htmlInputText.Value;
-                htmlInputText = FindControl("PasswordTextBox") as HtmlInputText;
-                user.Password = htmlInputText.Value;
-                RadioButtonList radioButtonList = FindControl("EnabledAndDisabledRadioList") as RadioButtonList;
-                user.Enabled = radioButtonList.SelectedValue.Equals("Enabled") ? true : false;
-            }
+            user.UserName = UsernameTextBox.Text;
+            user.Password = PasswordTextBox.Text;
+            user.Enabled = EnabledAndDisabledRadioList.SelectedValue.Equals("Enabled") ? true : false;
+
             dbService.DBOperations.UpdateUser(user, oldUserName);
         }
         Response.Redirect("HomePage.aspx");

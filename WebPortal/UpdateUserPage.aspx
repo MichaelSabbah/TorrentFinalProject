@@ -9,8 +9,24 @@
 </head>
 <body>
     <h1>Update User Page</h1>
-    <form id="form1" runat="server">
-        <div class="formContent" id="UpdateUserFormContent">
+    <form id="updateUserForm" runat="server">
+        <div id="UserDetails">
+        </div>
+        <div class="formContent" id="UpdateUserFormContent" >
+            <asp:Table ID="UserDetailsTable" runat="server">
+                <asp:TableRow>
+                    <asp:TableCell BorderWidth="0">UserName:</asp:TableCell>
+                    <asp:TableCell BorderWidth="0" ID="UserNameValue">UserName</asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell BorderWidth="0" >Password:</asp:TableCell>
+                    <asp:TableCell BorderWidth="0" ID="PasswordValue">UserName</asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell BorderWidth="0">Status:</asp:TableCell>
+                    <asp:TableCell BorderWidth="0" ID="EnabledDisabledValue">UserName</asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
             <asp:TextBox ID="UsernameTextBox" runat="server" placeholder="Username"></asp:TextBox>
             <asp:TextBox ID="PasswordTextBox" runat="server" placeholder="Password"></asp:TextBox>
             <br /><br /><br /><br />

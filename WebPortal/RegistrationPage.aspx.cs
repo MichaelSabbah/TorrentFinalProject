@@ -33,6 +33,7 @@ public partial class Registration : System.Web.UI.Page
             dbService.DBOperations.AddUser(user);
             Console.WriteLine("User added successfully");
             UserAddedSuccessfullyLabel.Visible = true;
+            Response.Redirect("HomePage.aspx");
         }
         catch(Exception)
         {

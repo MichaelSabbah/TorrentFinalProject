@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client.Views
 {
-    class DownLoadTableView
+    class FileDownloadView
     {
         public string FileName
         {
@@ -23,7 +23,7 @@ namespace Client.Views
         }
         public override bool Equals(object obj)
         {
-            return FileName.Equals(((DownLoadTableView)obj).FileName);
+            return FileName.Equals(((FileDownloadView)obj).FileName);
         }
     }
 }

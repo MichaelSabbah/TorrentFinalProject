@@ -42,19 +42,19 @@ namespace Client
             string fileName = FilesNameTextBox.Text;
             List<FileSharingDetailsTO> fileSharingDetailsTOList = ClientUtils.GetFilesByName(fileName);
 
-            FileSearchResultsView.Items.Clear();
+            FileSearchResultsListView.Items.Clear();
             if (fileSharingDetailsTOList.Count==0)
                 MessageBox.Show("File not found");
             else
                 foreach (FileSharingDetailsTO fileSharingDetails in fileSharingDetailsTOList)
                 {
-                    FileTableView fileTableView = new FileTableView(){
+                    FileView fileTableView = new FileView(){
                         FileName = fileSharingDetails.FileName,
                         Size = fileSharingDetails.Size,
                         Peers = fileSharingDetails.Peers.Count
                     };
 
-                    FileSearchResultsView.Items.Add(fileTableView);
+                    FileSearchResultsListView.Items.Add(fileTableView);
             }
         }
 
@@ -69,9 +69,9 @@ namespace Client
 
         private void DownLoadButton_Click(object sender, RoutedEventArgs e)
         {
-            foreach(FileTableView f in FileSearchResultsView.Items)
+            foreach(FileView f in FileSearchResultsListView.Items)
             {
-                DownLoadTableView downloadTableView = new DownLoadTableView(){
+                FileDownloadView downloadTableView = new FileDownloadView(){
                     FileName = f.FileName,
                     Size = f.Size,
                     Status = "Downloading"

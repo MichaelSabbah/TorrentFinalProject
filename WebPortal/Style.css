@@ -18,9 +18,15 @@ table{
     margin-top:-80px;
 }
 
+#UserDetailsTable{
+    margin: 0 auto;
+    width:200px;
+    margin-top:-70px;
+    margin-bottom:20px;
+}
 
-table td{
-    border:1px solid black;
+#UserDetailsTable td{
+    text-align:center;
 }
 
 .buttonsDiv {
@@ -30,8 +36,8 @@ table td{
 }
 
 .homePageButtons{
-    width:60%;
-    margin:0 auto;
+
+    margin-top:70px;
 }
 
 .formContent {
@@ -44,8 +50,9 @@ table td{
 }
 
 .totalInformation{
-    margin:10px;
-    text-align:left;
+    margin:0 auto;
+    width:100px;
+    margin-top:30px;   
 }
 
 .button {
@@ -113,5 +120,27 @@ table td{
 #UsernameTextBox {
     display: inline-block;
 }
-#UpdateUserFormContent {
+
+#updateUserForm {
+    padding-top: 70px;
+}
+
+
+
+.homePageButton{
+    height:40px;
+    width:200px;
+}
+
+#SearchAndInformationForm{
+    border:none;
+    margin-top:20px;
+}
+
+#Searchbtn{
+    
+}
+
+#filesTableContainer {
+    margin-top:110px;
 }
