@@ -102,6 +102,16 @@ table td{
     width:100%;
 }
 
-.RadioButtonList{
-    width:100%;
+#EnabledAndDisabledRadioList{
+    display:inline-block;
+}
+
+#PasswordTextBox {
+    display: inline-block;
+}
+
+#UsernameTextBox {
+    display: inline-block;
+}
+#UpdateUserFormContent {
 }

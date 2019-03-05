@@ -22,29 +22,38 @@ namespace WCFServer
         public string FileRequest(string jsonFileRequest)
         {
             FileRequestTO fileRequestTO = JsonConvert.DeserializeObject<FileRequestTO>(jsonFileRequest);
-            string jsonFileSharingDetails = null;
+            string jsonFileSharingDetailsList = null;
             User userEntity = dbOperations.GetUserByUsername(fileRequestTO.Username);
             if(userEntity != null) //User exist
             {
                 if(userEntity.Enabled && userEntity.Password.Equals(fileRequestTO.Password))//Correct password
                 {
-                    List<File> files = dbOperations.GetAllFileSharingReferencesByFileName(fileRequestTO.FileName);
-                    FileSharingDetailsTO fileSharingDetailsTO = new FileSharingDetailsTO();
-                    fileSharingDetailsTO.FileName = fileRequestTO.FileName;
-                    fileSharingDetailsTO.Size = 0;
-                    fileSharingDetailsTO.Peers = new List<Peer>();
-                    if (files.Count > 0) //File exist
+                    List<File> files = null;
+                    List<FileSharingDetailsTO> fileSharingDetailsTOs = new List<FileSharingDetailsTO>();
+                    if (fileRequestTO.FileName.Equals("*"))
                     {
+                        files = dbOperations.GetAllFiles();
+                    }
+                    else
+                    {
+                        files = dbOperations.GetAllFileSharingReferencesByFileName(fileRequestTO.FileName);
+                    }
+
+                    foreach(File file in files)
+                    {
+                        FileSharingDetailsTO fileSharingDetailsTO = new FileSharingDetailsTO();
+                        fileSharingDetailsTO.FileName = file.FileName;
                         fileSharingDetailsTO.Size = files.First().Size;
                         fileSharingDetailsTO.Peers = WCFServerUtils.GetAllSharingPeers(files);
-                        jsonFileSharingDetails = JsonConvert.SerializeObject(fileSharingDetailsTO);
+                        fileSharingDetailsTOs.Add(fileSharingDetailsTO);
                     }
-                    return jsonFileSharingDetails;
+                    jsonFileSharingDetailsList = JsonConvert.SerializeObject(fileSharingDetailsTOs);
+                    return jsonFileSharingDetailsList;
                 }
                 Console.WriteLine("User is not enabled or password is incorrect");
             }
             Console.WriteLine("User with username {0} not exist.", fileRequestTO.Username);
-            return jsonFileSharingDetails;
+            return jsonFileSharingDetailsList;
         }
 
         public bool SignIn(string jsonUserDetails)

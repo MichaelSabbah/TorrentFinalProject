@@ -6,3 +6,4 @@ C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinal
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\SharedObjects\obj\Debug\SharedObjects.csproj.CopyComplete
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\SharedObjects\obj\Debug\SharedObjects.dll
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\SharedObjects\obj\Debug\SharedObjects.pdb
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\SharedObjects\obj\Debug\SharedObjects.csprojResolveAssemblyReference.cache

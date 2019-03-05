@@ -1,6 +1,9 @@
-﻿using System;
+﻿using SharedObjects;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,19 +23,114 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public  MainWindow()
         {
-            InitializeComponent();
-            bool isConfigurationFileValid = ClientUtils.IsConfigurationFileValid();
-            if (!isConfigurationFileValid)
+            SetUp(false);
+            //InitializeComponent();
+        }
+
+        public MainWindow(bool openedByAnotherWindow)
+        {
+            SetUp(openedByAnotherWindow);
+        }
+
+        public void SetUp(bool openedByAnotherWindow)
+        {
+            try
             {
-                MessageBox.Show("Configuration file is invalid.");
-                System.Windows.Application.Current.Shutdown();
+                Client.ClientUtils.SetupServerConnection(); //Set connection to WCF Server
+
+                ClientUtils.clientDetails = new ClientDetails();
+
+                if (openedByAnotherWindow) //Open after 'SignedOut' button pressed - From SharingFilesWindow
+                {
+                    MessageBox.Show("openedFromAnotherWindow is true");
+                    InitializeComponent();
+                }
+                else //Application opened from client computer
+                {
+                    InitializeComponent();
+                    Hide();
+
+                    //Get user details (from Config file or from GUI)
+                    MessageBox.Show("openedFromAnotherWindow is false");
+                    if (File.Exists(Consts.CONFIGURATION_FILE_NAME)) //Configurations file exist - Get details from file
+                    {
+                        try
+                        {
+                            ClientUtils.clientDetails = ClientUtils.GetDetailsFromConfigurationFile();
+                            //Details get from configuration file - Try Sign In
+                            ClientUtils.SignIn();
+                            //Sign In success - Move to SharingFilesWindow
+                            AppWindow appWindow = new AppWindow();
+                            appWindow.Show();
+                            Close();
+                        }
+                        catch (Exception ex) //Error occured - Get details from user
+                        {
+                            Show();
+                            MessageBox.Show(ex.Message.ToString());
+                        }
+                    }
+                    else //Configuration file not exist - Get details from user
+                    {
+                        Show();
+                    }
+                }
             }
-            else
+            catch (Exception)
             {
-                //Show application
+                ClientUtils.SignOut();
+                Close();
             }
+        }
+
+        private void downlaodPathButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog folderBrowsingDialog = 
+                new System.Windows.Forms.FolderBrowserDialog();
+
+            folderBrowsingDialog.Description = Consts.BROWSE_DOWNLOAD_FOLDER_DIALOG_DESCRIPTION;
+
+            if (folderBrowsingDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ClientUtils.clientDetails.DownloadPath = folderBrowsingDialog.SelectedPath;
+            }
+        }
+
+        private void uploadPathButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog folderBrowsingDialog =
+                new System.Windows.Forms.FolderBrowserDialog();
+
+            folderBrowsingDialog.Description = Consts.BROWSE_DOWNLOAD_FOLDER_DIALOG_DESCRIPTION;
+
+            if (folderBrowsingDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ClientUtils.clientDetails.UploadPath = folderBrowsingDialog.SelectedPath;
+            }
+        }
+
+        private void signInButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClientUtils.clientDetails.Username = UsernameTextBox.Text;
+            ClientUtils.clientDetails.Password = PasswordTextBox.Text;
+            ClientUtils.clientDetails.IP = ClientUtils.GetIpLocalAddress();
+            ClientUtils.clientDetails.Port = int.Parse(Consts.CLIENT_PORT);
+            try
+            {
+                ClientUtils.SetConfigurationFile();
+                ClientUtils.SignIn();
+                //Signed In successfully - Show AppWindow
+                AppWindow appWindow = new AppWindow();
+                appWindow.Show();
+                Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
         }
     }
 }

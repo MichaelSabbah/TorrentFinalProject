@@ -1,6 +1,7 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -39,7 +40,7 @@ public partial class _Default : System.Web.UI.Page
     protected void Updatebtn_Click(object sender, EventArgs e)
     {
         string userName = UserNametxt.Text;
-        Response.Redirect("UpdateUserPage.aspx?username="+userName);
+        Response.Redirect("UpdateUserPage.aspx?userName="+userName);
     }
 
     protected void Deletebtn_Click(object sender, EventArgs e)

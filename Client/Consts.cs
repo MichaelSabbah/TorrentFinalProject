@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Client
+{
+    class Consts
+    {
+        //Dialogs Text
+        public static string BROWSE_DOWNLOAD_FOLDER_DIALOG_DESCRIPTION = "Select folder for downloading files";
+        public static string BROWSE_UPLOAD_FOLDER_DIALOG_DESCRIPTION = "Select folder for uploading files";
+
+        //Error Messages
+        public static string CONFIGURATION_FILE_INVALID_ERROR_MESSAGE = "Configuration details file is invalid. \nPlease Sign In.";
+        public static string SIGN_IN_FAILED_ERROR_MESSAGE = "Sign In failed. Try again";
+
+        //User Details 
+        public const string CLIENT_PORT = "8005";
+
+        //Configuration File Fields - User Details 
+        public const string CLIENT_DETAILS_ELEMENT_NAME = "ClientDetails";
+        public const string USERNAME_ELEMENT_NAME = "Username";
+        public const string PASSWORD_ELEMENT_NAME = "Password";
+        public const string DOWNLOAD_PATH_ELEMENT_NAME = "DownloadPath";
+        public const string UPLOAD_ELEMENT_NAME = "UplodaPath";
+        public const string CLIENT_IP_ELEMENT_NAME = "IP";
+        public const string PORT_ELEMENT_NAME = "Port";
+        
+        //Folders And Files Names
+        public static string CONFIGURATION_FILE_NAME = "Config2018.xml";
+    }
+}

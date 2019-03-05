@@ -1,16 +1,193 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SharedObjects;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Client
 {
     class ClientUtils
     {
+        public static ITorrentServices proxy = null;
+        public static ClientDetails clientDetails = null;
+
         public static bool IsConfigurationFileValid()
         {
             return false;
+        }
+
+        public static ClientDetails GetDetailsFromConfigurationFile()
+        {
+            ClientDetails clientDetails = new ClientDetails();
+
+            XmlTextReader xmlReader = new XmlTextReader(Consts.CONFIGURATION_FILE_NAME);
+
+            while (xmlReader.Read())
+            {
+                if (xmlReader.NodeType == XmlNodeType.Element)
+                {
+                    switch (xmlReader.Name)
+                    {
+                        case Consts.USERNAME_ELEMENT_NAME:
+                            xmlReader.Read();
+                            clientDetails.Username = xmlReader.Value;
+                            break;
+                        case Consts.PASSWORD_ELEMENT_NAME:
+                            xmlReader.Read();
+                            clientDetails.Password = xmlReader.Value;
+                            break;
+                        case Consts.CLIENT_IP_ELEMENT_NAME:
+                            xmlReader.Read();
+                            clientDetails.IP = xmlReader.Value;
+                            break;
+                        case Consts.UPLOAD_ELEMENT_NAME:
+                            xmlReader.Read();
+                            clientDetails.UploadPath = xmlReader.Value;
+                            break;
+                        case Consts.DOWNLOAD_PATH_ELEMENT_NAME:
+                            xmlReader.Read();
+                            clientDetails.DownloadPath = xmlReader.Value;
+                            break;
+                        case Consts.PORT_ELEMENT_NAME:
+                            xmlReader.Read();
+                            clientDetails.Port = int.Parse(xmlReader.Value);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            xmlReader.Close();
+
+            return clientDetails;
+        }
+
+        public static List<FileSharingDetailsTO> GetFilesByName(string fileName)
+        {
+            FileRequestTO fileRequestTO = new FileRequestTO();
+            fileRequestTO.FileName = fileName;
+            fileRequestTO.Username = clientDetails.Username;
+            fileRequestTO.Password = clientDetails.Password;
+
+            string jsonFileRequest = JsonConvert.SerializeObject(fileRequestTO);
+            string filesSharingDetails = proxy.FileRequest(jsonFileRequest);
+
+            return JsonConvert.DeserializeObject<List<FileSharingDetailsTO>>(filesSharingDetails);
+        }
+
+        public static List<FileTO> LoadClientFiles(ClientDetails clientDetails)
+        {
+            var userFiles = new DirectoryInfo(clientDetails.UploadPath).GetFiles();
+            List<FileTO> userFileTOList= new List<FileTO>();
+            
+            for (int i = 0; i < userFiles.Length; i++)
+            {
+                FileTO fileTO = new FileTO();
+                fileTO.Name = userFiles[i].Name;
+                fileTO.Size = userFiles[i].Length;
+                userFileTOList.Add(fileTO);
+            }
+            return userFileTOList;
+        }
+
+        public static void SignOut()
+        {
+            string username = clientDetails.Username;
+            string password = clientDetails.Password;
+            JObject jsonUserDetailsObject = new JObject();
+            jsonUserDetailsObject.Add(Consts.USERNAME_ELEMENT_NAME, username);
+            jsonUserDetailsObject.Add(Consts.PASSWORD_ELEMENT_NAME, password);
+            proxy.SignOut(JsonConvert.SerializeObject(jsonUserDetailsObject));
+        }
+
+        public static void SetupServerConnection()
+        {
+            ChannelFactory < ITorrentServices > channelFactory =
+                new ChannelFactory<ITorrentServices>("TorrentServiceEndpoint");
+
+            proxy = channelFactory.CreateChannel();
+        }
+
+        public static void SignIn()
+        {
+            UserTO userTO = clientDetails.ToUserTo(); 
+            userTO.Files = LoadClientFiles(clientDetails);
+            string jsonUserDetails = JsonConvert.SerializeObject(userTO);
+            bool signInSuccess = proxy.SignIn(jsonUserDetails);
+            if (!signInSuccess)
+            {
+                throw new Exception(Consts.SIGN_IN_FAILED_ERROR_MESSAGE);
+            }
+        }
+
+        internal static void SetConfigurationFile()
+        {
+            try
+            {
+                XmlWriterSettings xmlSetings = new XmlWriterSettings();
+                xmlSetings.Indent = true;
+                xmlSetings.IndentChars = "\t";
+                using (XmlWriter xmlWriter = XmlWriter.Create(Consts.CONFIGURATION_FILE_NAME, xmlSetings))
+                {
+                    xmlWriter.WriteStartDocument();
+                    xmlWriter.WriteStartElement(Consts.CLIENT_DETAILS_ELEMENT_NAME);
+
+                    xmlWriter.WriteStartElement(Consts.USERNAME_ELEMENT_NAME);
+                    xmlWriter.WriteString(clientDetails.Username);
+                    xmlWriter.WriteEndElement();
+
+                    xmlWriter.WriteStartElement(Consts.PASSWORD_ELEMENT_NAME);
+                    xmlWriter.WriteString(clientDetails.Password);
+                    xmlWriter.WriteEndElement();
+
+                    xmlWriter.WriteStartElement(Consts.CLIENT_IP_ELEMENT_NAME);
+                    xmlWriter.WriteString(clientDetails.IP);
+                    xmlWriter.WriteEndElement();
+
+                    xmlWriter.WriteStartElement(Consts.UPLOAD_ELEMENT_NAME);
+                    xmlWriter.WriteString(clientDetails.UploadPath);
+                    xmlWriter.WriteEndElement();
+
+                    xmlWriter.WriteStartElement(Consts.DOWNLOAD_PATH_ELEMENT_NAME);
+                    xmlWriter.WriteString(clientDetails.DownloadPath);
+                    xmlWriter.WriteEndElement();
+
+                    xmlWriter.WriteStartElement(Consts.PORT_ELEMENT_NAME);
+                    xmlWriter.WriteString(clientDetails.Port.ToString());
+                    xmlWriter.WriteEndElement();//Port
+
+                    xmlWriter.WriteEndDocument();//End Doc
+
+                    xmlWriter.Close();
+                }
+            }
+            catch(Exception)
+            {
+                throw new Exception("Configuration file creation failed.");
+            }
+            
+        }
+
+        public static string GetIpLocalAddress()
+        {
+            IPHostEntry IPHost = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+            string LocallIPAddress = "";
+            foreach (var ipAddress in IPHost.AddressList)
+            {
+                if (ipAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork
+                    && !IPAddress.IsLoopback(ipAddress))
+                {
+                    LocallIPAddress = ipAddress.ToString();
+                }
+            }
+            return LocallIPAddress;
         }
     }
 }

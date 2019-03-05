@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closing="WindowClosing">
-    <Grid>
-        
+        Title="Sign In" Height="400" Width="300">
+    <Grid Background="#f2fff2">
+        <TextBlock HorizontalAlignment="Center" FontSize="25">Sign In</TextBlock>
+        <Grid Name="SignInGridPanel" VerticalAlignment="Center" Height="400" Width="300" Margin="30" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                Username
+            </TextBlock>
+            <TextBox Name="UsernameTextBox" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+            <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"> 
+                Password
+            </TextBlock>
+            <TextBox Name="PasswordTextBox" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+            <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"> 
+                Download Path
+            </TextBlock>
+            <Button Name="downloadPathButton" Click="downlaodPathButton_Click" Grid.Row="4" VerticalAlignment="Bottom" Margin="110,0,110,18.333">Browse</Button>
+
+            <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top"> 
+                Upload Path
+            </TextBlock>
+            <Button Name="uploadPathButton" Grid.Row="5" VerticalAlignment="Bottom" Click="uploadPathButton_Click">Browse</Button>
+
+            <Button Name="signInButton" Grid.Row="7" VerticalAlignment="Top" Width="150" Click="signInButton_Click">Sign In</Button>
+        </Grid>
     </Grid>
 </Window>

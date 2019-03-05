@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClientDetails>
+	<Username>Dor</Username>
+	<Password>12345</Password>
+	<IP>10.100.102.9</IP>
+	<UplodaPath>C:\Users\USER\Desktop\Upload</UplodaPath>
+	<DownloadPath>C:\Users\USER\Desktop\Downloads</DownloadPath>
+	<Port>8005</Port>
+</ClientDetails>

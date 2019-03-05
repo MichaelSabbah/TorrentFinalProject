@@ -77,15 +77,15 @@ namespace DAL
 
         public List<File> GetAllFiles()
         {
-            List<File> list = new List<File>();
+            List<File> files = new List<File>();
             using (TorrentDBEntities db = new TorrentDBEntities())
             {
                 foreach(Files f in db.Files)
                 {
-                    list.Add(DBUtils.FilesToFile(f));
+                    files.Add(DBUtils.FilesToFile(f));
                 }
             }
-            return list;
+            return files;
         }
 
         public void AddFilesByUser(List<File> files)

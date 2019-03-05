@@ -9,7 +9,6 @@ using Entities;
 
 public partial class Registration : System.Web.UI.Page
 {
-
     private DBService dbService = DBService.getInstance();
 
     protected void Page_Load(object sender, EventArgs e)
