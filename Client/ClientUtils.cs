@@ -189,5 +189,9 @@ namespace Client
             }
             return LocallIPAddress;
         }
+        public static void DeleteConfigurationFile()
+        {
+            File.Delete(Consts.CONFIGURATION_FILE_NAME);
+        }
     }
 }

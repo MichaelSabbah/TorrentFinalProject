@@ -40,7 +40,7 @@
             </TextBlock>
             <Button Name="uploadPathButton" Grid.Row="5" VerticalAlignment="Bottom" Click="uploadPathButton_Click">Browse</Button>
 
-            <Button Name="signInButton" Grid.Row="7" VerticalAlignment="Top" Width="150" Click="signInButton_Click">Sign In</Button>
+            <Button Name="signInButton" Grid.Row="7" Width="150" Click="signInButton_Click" Margin="75,0.2,75,18" Height="Auto">Sign In</Button>
         </Grid>
     </Grid>
 </Window>

@@ -24,22 +24,48 @@ namespace Client
         public AppWindow()
         {
             InitializeComponent();
-        }
+        }           
 
         private void SearchFileButton_Click(object sender, RoutedEventArgs e)
         {
             string fileName = FilesNameTextBox.Text;
             List<FileSharingDetailsTO> fileSharingDetailsTOList = ClientUtils.GetFilesByName(fileName);
             FileSearchResultsView.Items.Clear();
-            foreach (FileSharingDetailsTO fileSharingDetails in fileSharingDetailsTOList)
-            {
-                FileTableView fileTableView = new FileTableView(){
-                    FileName = fileSharingDetails.FileName,
-                    Size = fileSharingDetails.Size,
-                    Peers = fileSharingDetails.Peers.Count
-                };
+            if (fileSharingDetailsTOList.Count==0)
+                MessageBox.Show("File not found");
+            else
+                foreach (FileSharingDetailsTO fileSharingDetails in fileSharingDetailsTOList)
+                {
+                    FileTableView fileTableView = new FileTableView(){
+                        FileName = fileSharingDetails.FileName,
+                        Size = fileSharingDetails.Size,
+                        Peers = fileSharingDetails.Peers.Count
+                    };
 
-                FileSearchResultsView.Items.Add(fileTableView);
+                    FileSearchResultsView.Items.Add(fileTableView);
+            }
+        }
+
+        private void SignOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClientUtils.SignOut();
+            ClientUtils.DeleteConfigurationFile();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
+
+        private void DownLoadButton_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(FileTableView f in FileSearchResultsView.Items)
+            {
+                DownLoadTableView downloadTableView = new DownLoadTableView(){
+                    FileName = f.FileName,
+                    Size = f.Size,
+                    Status = "Downloading"
+                };
+                if(!DownloadsView.Items.Contains(downloadTableView))
+                    DownloadsView.Items.Add(downloadTableView);
             }
         }
     }
