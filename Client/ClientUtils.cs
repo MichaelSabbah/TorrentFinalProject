@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Client.Views;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SharedObjects;
 using System;
@@ -18,6 +19,11 @@ namespace Client
     {
         public static ITorrentServices proxy = null;
         public static ClientDetails clientDetails = null;
+
+        //Dictionary of files - To be found fast later
+        public static Dictionary<string, FileView> searchingFilesResultDictionary = new Dictionary<string, FileView>();
+        public static Dictionary<string, UploadingFileView> uploadingFilesDictionary = new Dictionary<string, UploadingFileView>();
+        public static Dictionary<string, FileDownloadView> downloadingDictionarys = new Dictionary<string, FileDownloadView>();
 
         public static bool IsConfigurationFileValid()
         {
@@ -121,20 +127,32 @@ namespace Client
             FileSharingDetailsTO requestedFile = 
                 JsonConvert.DeserializeObject<List<FileSharingDetailsTO>>(proxy.FileRequest(jsonFileRequest))[0];
 
-            
+
         }
 
         public static string ShowAboutFileWithReflection()
         {
+            //Check if About dll file is exist (already downloaded)
             if (File.Exists(clientDetails.DownloadPath + "\\" + Consts.REFLECTION_FILE_NAME))
             {
                 string details = "";
                 Assembly assembly = Assembly.LoadFrom(clientDetails.DownloadPath + "\\" + Consts.REFLECTION_FILE_NAME);
                 foreach(Type type in assembly.GetTypes())
                 {
-                    details += type.GetProperties()[0].ToString();
-                    //object obj = Activator.CreateInstance(type);
-                       
+                    PersonAttribute personAttribute = type.GetCustomAttribute<PersonAttribute>(true);                      
+
+                    if(personAttribute != null)
+                    {
+                        object currentPerson = Activator.CreateInstance(type);
+                        string currentPersonName = type.GetProperty("Name").GetValue(currentPerson).ToString();
+                        string currentPersonId = personAttribute.Id;
+                        details += "Name: " + currentPersonName + "\n" + "Id: " + currentPersonId+"\n";
+                        if (currentPersonName.Equals("Amir"))
+                        {
+                            details += "Amir: " + type.GetMethod("SaySomthing").Invoke(currentPerson,null);
+                        }
+                        details += "\n\n\n";
+                    }
                 }
                 return details;
             }

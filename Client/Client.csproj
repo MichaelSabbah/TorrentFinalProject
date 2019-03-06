@@ -68,6 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Download.cs" />
+    <Compile Include="PersonAttribute.cs" />
     <Compile Include="Upload.cs" />
     <Compile Include="Views\FileDownloadView.cs" />
     <Compile Include="Views\FileView.cs" />

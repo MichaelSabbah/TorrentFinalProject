@@ -38,6 +38,7 @@ namespace Client
         public const string DOWNLOADING_FILE_STATUS = "Downlaoding";
         public const string NONE_STATUS = "None";
         public const string DOWNLOAD_FILE_COMPLETED_STATUS = "Complete";
+        public const string IDLE_STATUS = "Idle"; 
 
         //Reflection file name
         public const string REFLECTION_FILE_NAME = "AboutReflectionDLL.dll";

@@ -23,10 +23,13 @@ namespace Client
     /// </summary>
     public partial class AppWindow : Window
     {
-        //private Dictionary<string, FileSharingDetailsTO> requestedFiles;
-        private ObservableCollection<FileDownloadView> downloadingFilesDataCollection;
-        //private Dictionary<string, FileSharingDetailsTO> downloadingFiles;
-        //private Dictionary<string, FileSharingDetailsTO> uploadingFiles;
+        //List of files - For binding to ListViews
+        private List<FileView> searchingFilesResultList = new List<FileView>();
+        private List<UploadingFileView> uploadingFiles = new List<UploadingFileView>();
+        private List<FileDownloadView> downloadingFiles = new List<FileDownloadView>();
+
+        //private ObservableCollection<FileDownloadView> downloadingFilesDataCollection;
+
 
         public AppWindow()
         {
@@ -34,16 +37,40 @@ namespace Client
             //uploadingFiles = new Dictionary<string, FileSharingDetailsTO>();
             //downloadingFiles = new Dictionary<string, FileSharingDetailsTO>();
             InitializeComponent();
+            BindingListViewToData();
             SetUploadListView();
+            //StartListenToRequests();
+        }
+
+        private void SetUploadListView()
+        {
+            List<FileTO> clientFilesToUpload =  ClientUtils.LoadClientFiles();
+            foreach(FileTO fileTO in clientFilesToUpload)
+            {
+                UploadingFileView uploadingFileView = new UploadingFileView();
+                uploadingFileView.FileName = fileTO.Name;
+                uploadingFileView.Size = fileTO.Size;
+                uploadingFileView.Status = Consts.IDLE_STATUS;
+                uploadingFiles.Add(uploadingFileView);
+                ClientUtils.uploadingFilesDictionary.Add(uploadingFileView.FileName, uploadingFileView);
+            }
+            UploadingFilesListView.Items.Refresh();
+        }
+
+        private void BindingListViewToData()
+        {
+            FileSearchResultsListView.ItemsSource = searchingFilesResultList;
+            UploadingFilesListView.ItemsSource = uploadingFiles;
+            DownloadsFilesListView.ItemsSource = downloadingFiles;
         }
 
         private void SearchFileButton_Click(object sender, RoutedEventArgs e)
         {
-            //requestedFiles.Clear();
             string fileName = FilesNameTextBox.Text;
             List<FileSharingDetailsTO> fileSharingDetailsTOList = ClientUtils.GetFilesByName(fileName);
 
-            FileSearchResultsListView.Items.Clear();
+            searchingFilesResultList.Clear();
+
             if (fileSharingDetailsTOList != null && fileSharingDetailsTOList.Count == 0)
             {
                 MessageBox.Show("File not found");
@@ -53,14 +80,16 @@ namespace Client
                 foreach (FileSharingDetailsTO fileSharingDetails in fileSharingDetailsTOList)
                 {
                     //Update requested files table
-                    FileView fileTableView = new FileView(){
+                    FileView fileView = new FileView(){
                         FileName = fileSharingDetails.FileName,
                         Size = fileSharingDetails.Size,
                         Peers = fileSharingDetails.Peers.Count
                     };
 
-                    FileSearchResultsListView.Items.Add(fileTableView);
+                    searchingFilesResultList.Add(fileView);
+                    ClientUtils.searchingFilesResultDictionary.Add(fileView.FileName, fileView);
                 }
+                FileSearchResultsListView.Items.Refresh();
             }
         }
 
@@ -75,22 +104,24 @@ namespace Client
 
         private void DownLoadButton_Click(object sender, RoutedEventArgs e)
         {
-            foreach(FileView f in FileSearchResultsListView.Items)
+            foreach (FileView f in FileSearchResultsListView.Items)
             {
-                FileDownloadView downloadTableView = new FileDownloadView(){
+                FileDownloadView downloadTableView = new FileDownloadView()
+                {
                     FileName = f.FileName,
                     Size = f.Size,
-                    Status = "Downloading"
+                    Status = Consts.DOWNLOADING_FILE_STATUS
                 };
-                if(!DownloadsView.Items.Contains(downloadTableView))
-                    DownloadsView.Items.Add(downloadTableView);
+                //if(!DownloadsView.Items.Contains(downloadTableView))
+                //    DownloadsView.Items.Add(downloadTableView);
             }
         }
 
-        private void SetUploadListView()
-        {
-            List<FileTO> clientFiles = ClientUtils.LoadClientFiles();
-        }
+
+        //private void SetUploadListView()
+        //{
+        //    List<FileTO> clientFiles = ClientUtils.LoadClientFiles();
+        //}
 
         private void FileSearchResultsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

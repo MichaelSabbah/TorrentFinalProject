@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace AboutReflectionDLL
 {
-    [AboutReflectionDLL.PersonAttribute("Amir")]
+    [Client.PersonAttribute("318215852")]
     class Amir
     {
+        private string name = "Amir";
+
         public Amir() { }
 
-        public string Id
+        public string Name
         {
-            get; set;
+            get
+            {
+                return name;
+            }
         }
 
         public string SaySomthing()
@@ -23,7 +28,7 @@ namespace AboutReflectionDLL
 
         public string PrintDetails()
         {
-            return "Name: Michael - Id: " + Id;
+            return "Name: " + Name;
         }
     }
 }
