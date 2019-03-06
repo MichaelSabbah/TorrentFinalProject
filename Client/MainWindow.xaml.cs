@@ -44,7 +44,6 @@ namespace Client
 
                 if (openedByAnotherWindow) //Open after 'SignedOut' button pressed - From SharingFilesWindow
                 {
-                    MessageBox.Show("openedFromAnotherWindow is true");
                     InitializeComponent();
                 }
                 else //Application opened from client computer
@@ -53,7 +52,6 @@ namespace Client
                     Hide();
 
                     //Get user details (from Config file or from GUI)
-                    MessageBox.Show("openedFromAnotherWindow is false");
                     if (File.Exists(Consts.CONFIGURATION_FILE_NAME)) //Configurations file exist - Get details from file
                     {
                         try
