@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="AppWindow" Height="670" Width="900">
+        Title="AppWindow" Height="670" Width="900" Closing="WindowClosing">
     <Grid Background="#f2fff2" Height="680" Width="900">
         <TextBlock x:Name="FileNameText" HorizontalAlignment="Left" Margin="236,20,0,0" TextWrapping="Wrap" Text="File Name:" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
         <TextBox x:Name="FilesNameTextBox" HorizontalAlignment="Left" Height="23" Margin="356,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
         <Button x:Name="SearchFileButton" Content="Search" HorizontalAlignment="Left" Margin="511,22,0,0" VerticalAlignment="Top" Width="75" Click="SearchFileButton_Click"/>
 
-        <ListView FontSize="13" FontWeight="Bold" Name="FileSearchResultsListView" BorderThickness="1" Background="LightGray" Width="850" Margin="25,91,25,461">
+        <ListView FontSize="13" FontWeight="Bold" Name="FileSearchResultsListView" BorderThickness="1" Background="LightGray" Width="850" Margin="25,91,25,461" MouseDoubleClick="FileSearchResultsListView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="File Name" Width="273" DisplayMemberBinding="{Binding FileName}"></GridViewColumn>
@@ -45,7 +45,6 @@
         <TextBlock x:Name="DownlaodsTableText" HorizontalAlignment="Left" Margin="381,232,0,0" TextWrapping="Wrap" Text="Downlaods" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
         <TextBlock x:Name="UploadsTableText" HorizontalAlignment="Left" Margin="396,403,0,0" TextWrapping="Wrap" Text="Uploads" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
         <Button x:Name="SignOutButton" Content="Sign Out" Background="Red" HorizontalAlignment="Left" Width="142" Margin="24,588,0,58" Height="Auto" Click="SignOutButton_Click"/>
-        <Button x:Name="ReflectionButton" Content="Reflection Button" HorizontalAlignment="Left" Margin="645,588,0,0" VerticalAlignment="Top" Width="231" Height="34"/>
-        <Button x:Name="DownLoadButton" Content="Download" HorizontalAlignment="Left" Background="blue" VerticalAlignment="Top" Width="75" Margin="782,61,0,0" Click="DownLoadButton_Click"/>
+        <Button x:Name="ReflectionButton" Content="About" HorizontalAlignment="Left" Margin="645,588,0,0" VerticalAlignment="Top" Width="231" Height="34" Click="ReflectionButton_Click"/>
     </Grid>
 </Window>

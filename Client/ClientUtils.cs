@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -105,6 +106,42 @@ namespace Client
             jsonUserDetailsObject.Add(Consts.USERNAME_ELEMENT_NAME, username);
             jsonUserDetailsObject.Add(Consts.PASSWORD_ELEMENT_NAME, password);
             proxy.SignOut(JsonConvert.SerializeObject(jsonUserDetailsObject));
+        }
+
+        public static void DownloadFile(string fileName)
+        {
+            //Get the requested file
+            FileRequestTO fileRequestTO = new FileRequestTO();
+            fileRequestTO.FileName = fileName;
+            fileRequestTO.Username = clientDetails.Username;
+            fileRequestTO.Password = clientDetails.Password;
+            string jsonFileRequest = JsonConvert.SerializeObject(fileRequestTO);
+
+            //Downloading only one file - Get the firs one
+            FileSharingDetailsTO requestedFile = 
+                JsonConvert.DeserializeObject<List<FileSharingDetailsTO>>(proxy.FileRequest(jsonFileRequest))[0];
+
+            
+        }
+
+        public static string ShowAboutFileWithReflection()
+        {
+            if (File.Exists(clientDetails.DownloadPath + "\\" + Consts.REFLECTION_FILE_NAME))
+            {
+                string details = "";
+                Assembly assembly = Assembly.LoadFrom(clientDetails.DownloadPath + "\\" + Consts.REFLECTION_FILE_NAME);
+                foreach(Type type in assembly.GetTypes())
+                {
+                    details += type.GetProperties()[0].ToString();
+                    //object obj = Activator.CreateInstance(type);
+                       
+                }
+                return details;
+            }
+            else
+            {
+                return Consts.ABOUT_FILE_NOT_FOUND_MESSAGE;
+            }
         }
 
         public static void SetupServerConnection()

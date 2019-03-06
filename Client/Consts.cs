@@ -11,6 +11,8 @@ namespace Client
         //Dialogs Text
         public static string BROWSE_DOWNLOAD_FOLDER_DIALOG_DESCRIPTION = "Select folder for downloading files";
         public static string BROWSE_UPLOAD_FOLDER_DIALOG_DESCRIPTION = "Select folder for uploading files";
+        public static string DOWNLOAD_CONFIRMATION_DIALOG_MESSAGE = "Are you sure you want to download this file?";
+        public static string ABOUT_FILE_NOT_FOUND_MESSAGE = "Sorry, About file not exist";
 
         //Error Messages
         public static string CONFIGURATION_FILE_INVALID_ERROR_MESSAGE = "Configuration details file is invalid. \nPlease Sign In.";
@@ -36,5 +38,10 @@ namespace Client
         public const string DOWNLOADING_FILE_STATUS = "Downlaoding";
         public const string NONE_STATUS = "None";
         public const string DOWNLOAD_FILE_COMPLETED_STATUS = "Complete";
+
+        //Reflection file name
+        public const string REFLECTION_FILE_NAME = "AboutReflectionDLL.dll";
+
+
     }
 }

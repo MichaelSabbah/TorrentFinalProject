@@ -3,6 +3,7 @@ using SharedObjects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,32 +23,36 @@ namespace Client
     /// </summary>
     public partial class AppWindow : Window
     {
-
-        private Dictionary<string, FileSharingDetailsTO> requestedFiles;
-        //private ObservableCollection<TimeStepData> downloadingFilesDataCollection;
-        private Dictionary<string, FileSharingDetailsTO> downloadingFiles;
-        private Dictionary<string, FileSharingDetailsTO> uploadingFiles;
+        //private Dictionary<string, FileSharingDetailsTO> requestedFiles;
+        private ObservableCollection<FileDownloadView> downloadingFilesDataCollection;
+        //private Dictionary<string, FileSharingDetailsTO> downloadingFiles;
+        //private Dictionary<string, FileSharingDetailsTO> uploadingFiles;
 
         public AppWindow()
         {
-            requestedFiles = new Dictionary<string, FileSharingDetailsTO>();
-            uploadingFiles = new Dictionary<string, FileSharingDetailsTO>();
-            downloadingFiles = new Dictionary<string, FileSharingDetailsTO>();
+            //requestedFiles = new Dictionary<string, FileSharingDetailsTO>();
+            //uploadingFiles = new Dictionary<string, FileSharingDetailsTO>();
+            //downloadingFiles = new Dictionary<string, FileSharingDetailsTO>();
             InitializeComponent();
             SetUploadListView();
         }
 
         private void SearchFileButton_Click(object sender, RoutedEventArgs e)
         {
+            //requestedFiles.Clear();
             string fileName = FilesNameTextBox.Text;
             List<FileSharingDetailsTO> fileSharingDetailsTOList = ClientUtils.GetFilesByName(fileName);
 
             FileSearchResultsListView.Items.Clear();
-            if (fileSharingDetailsTOList.Count==0)
+            if (fileSharingDetailsTOList != null && fileSharingDetailsTOList.Count == 0)
+            {
                 MessageBox.Show("File not found");
+            }
             else
+            {
                 foreach (FileSharingDetailsTO fileSharingDetails in fileSharingDetailsTOList)
                 {
+                    //Update requested files table
                     FileView fileTableView = new FileView(){
                         FileName = fileSharingDetails.FileName,
                         Size = fileSharingDetails.Size,
@@ -55,6 +60,7 @@ namespace Client
                     };
 
                     FileSearchResultsListView.Items.Add(fileTableView);
+                }
             }
         }
 
@@ -84,6 +90,27 @@ namespace Client
         private void SetUploadListView()
         {
             List<FileTO> clientFiles = ClientUtils.LoadClientFiles();
+        }
+
+        private void FileSearchResultsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (MessageBox.Show(Consts.DOWNLOAD_CONFIRMATION_DIALOG_MESSAGE, "Download Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                FileView selectedFile = (FileView)FileSearchResultsListView.SelectedItem;
+                ClientUtils.DownloadFile(selectedFile.FileName);
+            }
+        }
+
+        private void WindowClosing(object sender, EventArgs e)
+        {
+            ClientUtils.SignOut();
+        }
+
+        private void ReflectionButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            string aboutMessageToShow = ClientUtils.ShowAboutFileWithReflection();
+            MessageBox.Show(aboutMessageToShow);
         }
     }
 }

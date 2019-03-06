@@ -32,19 +32,38 @@ namespace WCFServer
                     List<FileSharingDetailsTO> fileSharingDetailsTOs = new List<FileSharingDetailsTO>();
                     if (fileRequestTO.FileName.Equals("*"))
                     {
+                        Dictionary<string, List<File>> filesClassifiedByName =
+                            new Dictionary<string, List<File>>();
+
                         files = dbOperations.GetAllFiles();
+                        foreach(File file in files)
+                        {
+                            List<File> filesWithSameName;
+                            if (!filesClassifiedByName.ContainsKey(file.FileName))//Dictionary not contain file
+                            {
+                                filesWithSameName = new List<File>();
+                                filesClassifiedByName.Add(file.FileName, filesWithSameName);
+                            }
+                            filesClassifiedByName.TryGetValue(file.FileName,out filesWithSameName);
+                            filesWithSameName.Add(file);
+                        }
+
+                        foreach(List<File> filesWithSameName in filesClassifiedByName.Values)
+                        {
+                            FileSharingDetailsTO fileSharingDetailsTO = new FileSharingDetailsTO();
+                            fileSharingDetailsTO.FileName = filesWithSameName.First().FileName;
+                            fileSharingDetailsTO.Size = filesWithSameName.First().Size;
+                            fileSharingDetailsTO.Peers = WCFServerUtils.GetFileSharingPeers(filesWithSameName);
+                            fileSharingDetailsTOs.Add(fileSharingDetailsTO);
+                        }
                     }
                     else
                     {
                         files = dbOperations.GetAllFileSharingReferencesByFileName(fileRequestTO.FileName);
-                    }
-
-                    foreach(File file in files)
-                    {
                         FileSharingDetailsTO fileSharingDetailsTO = new FileSharingDetailsTO();
-                        fileSharingDetailsTO.FileName = file.FileName;
+                        fileSharingDetailsTO.FileName = files.First().FileName;
                         fileSharingDetailsTO.Size = files.First().Size;
-                        fileSharingDetailsTO.Peers = WCFServerUtils.GetAllSharingPeers(files);
+                        fileSharingDetailsTO.Peers = WCFServerUtils.GetFileSharingPeers(files);
                         fileSharingDetailsTOs.Add(fileSharingDetailsTO);
                     }
                     jsonFileSharingDetailsList = JsonConvert.SerializeObject(fileSharingDetailsTOs);
