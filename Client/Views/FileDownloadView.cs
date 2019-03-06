@@ -33,5 +33,10 @@ namespace Client.Views
         {
             get;set;
         }
+
+        public DateTime StartTime
+        {
+            get; set;
+        }
     }
 }
