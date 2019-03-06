@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client.Views
 {
-    class FileDownloadView
+    public class FileDownloadView
     {
         public string FileName
         {
@@ -29,15 +29,9 @@ namespace Client.Views
         {
             get;set;
         }
-        public double Kbps
+        public int Kbps
         {
             get;set;
-        }
-
-
-        public override bool Equals(object obj)
-        {
-            return FileName.Equals(((FileDownloadView)obj).FileName);
         }
     }
 }

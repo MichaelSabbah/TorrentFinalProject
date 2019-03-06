@@ -166,6 +166,9 @@ namespace Client
                 fileDownloadView.FileName = selectedFile.FileName;
                 fileDownloadView.Size = selectedFile.Size;
                 fileDownloadView.Peers = selectedFile.Peers;
+                fileDownloadView.Kbps = 0;
+                fileDownloadView.Time = TimeSpan.MinValue;
+                fileDownloadView.Status = "";
                 if (!ClientUtils.downloadingDictionary.ContainsKey(fileDownloadView.FileName))
                 {
                     ClientUtils.downloadingDictionary.Add(fileDownloadView.FileName, fileDownloadView);

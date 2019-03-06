@@ -7,3 +7,4 @@ C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinal
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Entities\obj\Debug\Entities.dll
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Entities\obj\Debug\Entities.pdb
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache

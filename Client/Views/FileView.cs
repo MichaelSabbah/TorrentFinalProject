@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client.Views
 {
-    class FileView
+    public class FileView
     {
         public string FileName
         {
