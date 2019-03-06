@@ -20,7 +20,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView Name="UploadingFilesListView" Background="LightGray" Width="850" Margin="25,259,25,294">
+        <ListView  FontSize="13" FontWeight="Bold" Name="UploadingFilesListView" Background="LightGray" Width="850" Margin="25,259,25,294">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="File Name" Width="285" DisplayMemberBinding="{Binding FileName}"/>
@@ -29,15 +29,15 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView Name="DownloadsFilesListView" Background="LightGray" Width="850" Margin="25,435,25,116">
+        <ListView  FontSize="13" FontWeight="Bold" Name="DownloadsFilesListView" Background="LightGray" Width="850" Margin="25,435,25,116">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="File Name" Width="200"/>
-                    <GridViewColumn Header="File Size" Width="100"/>
-                    <GridViewColumn Header="Peers" Width="100"/>
-                    <GridViewColumn Header="Status" Width="150"/>
-                    <GridViewColumn Header="Time" Width="125"/>
-                    <GridViewColumn Header="Kbps" Width="170"/>
+                    <GridViewColumn Header="File Name" Width="200" DisplayMemberBinding="{Binding FileName}"/>
+                    <GridViewColumn Header="File Size" Width="100" DisplayMemberBinding="{Binding Size}"/>
+                    <GridViewColumn Header="Peers" Width="100" DisplayMemberBinding="{Binding Peers}"/>
+                    <GridViewColumn Header="Status" Width="150" DisplayMemberBinding="{Binding Status}"/>
+                    <GridViewColumn Header="Time" Width="125" DisplayMemberBinding="{Binding Time}"/>
+                    <GridViewColumn Header="Kbps" Width="170" DisplayMemberBinding="{Binding Kbps}"/>
                 </GridView>
             </ListView.View>
         </ListView>
