@@ -11,8 +11,6 @@ C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinal
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\DAL.dll
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\EntityFramework.dll
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\Entities.pdb
-C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\WCFServer.pdb
-C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\WCFServer.exe.config
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\Newtonsoft.Json.xml
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\DAL.pdb
@@ -42,3 +40,5 @@ C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinal
 C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\SharedObjects.pdb
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\ClienTest\bin\Debug\SharedObjects.dll
 C:\Users\dudy\Documents\GitHub\TorrentFinalProject\ClienTest\bin\Debug\SharedObjects.pdb
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\WCFServer.pdb
+C:\Users\USER\Desktop\studies\FirthYear\C#-.NET\TorrentFinalProject\TorrentFinalProject\ClienTest\bin\Debug\WCFServer.exe.config

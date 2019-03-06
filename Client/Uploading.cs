@@ -39,9 +39,9 @@ namespace Client
             //Get file request details from remote peer
             var requestedFileName = clientsStreamReader.ReadLine();
             var requestedFileSize = clientsStreamReader.ReadLine();
-            var amountOfBytesToUpload = clientsStreamReader.ReadLine();
             var startingByteOffset = clientsStreamReader.ReadLine();
-
+            var amountOfBytesToUpload = clientsStreamReader.ReadLine();
+            
             UploadStartedEvent(requestedFileName);
 
             byte[] bytes = new byte[int.Parse(amountOfBytesToUpload)];
