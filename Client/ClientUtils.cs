@@ -15,6 +15,9 @@ using System.Xml;
 
 namespace Client
 {
+    public delegate void DownloadingManageDelegate(string fileName);
+    public delegate void UploadingManageDelegate(string fileName);
+
     class ClientUtils
     {
         public static ITorrentServices proxy = null;
@@ -23,7 +26,7 @@ namespace Client
         //Dictionary of files - To be found fast later
         public static Dictionary<string, FileView> searchingFilesResultDictionary = new Dictionary<string, FileView>();
         public static Dictionary<string, UploadingFileView> uploadingFilesDictionary = new Dictionary<string, UploadingFileView>();
-        public static Dictionary<string, FileDownloadView> downloadingDictionarys = new Dictionary<string, FileDownloadView>();
+        public static Dictionary<string, FileDownloadView> downloadingDictionary = new Dictionary<string, FileDownloadView>();
 
         public static bool IsConfigurationFileValid()
         {
@@ -114,7 +117,7 @@ namespace Client
             proxy.SignOut(JsonConvert.SerializeObject(jsonUserDetailsObject));
         }
 
-        public static void DownloadFile(string fileName)
+        public static FileSharingDetailsTO GetFileToDownloadByName(string fileName)
         {
             //Get the requested file
             FileRequestTO fileRequestTO = new FileRequestTO();
@@ -127,7 +130,7 @@ namespace Client
             FileSharingDetailsTO requestedFile = 
                 JsonConvert.DeserializeObject<List<FileSharingDetailsTO>>(proxy.FileRequest(jsonFileRequest))[0];
 
-
+            return requestedFile;
         }
 
         public static string ShowAboutFileWithReflection()

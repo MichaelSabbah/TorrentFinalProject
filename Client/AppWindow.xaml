@@ -42,8 +42,8 @@
             </ListView.View>
         </ListView>
         <TextBlock x:Name="FilesTableText" HorizontalAlignment="Left" Margin="409,63,0,0" TextWrapping="Wrap" Text="Files" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
-        <TextBlock x:Name="UploadsTableText" HorizontalAlignment="Left" Margin="381,232,0,0" TextWrapping="Wrap" Text="Uploads" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
-        <TextBlock x:Name="DownlaodsTableText" HorizontalAlignment="Left" Margin="396,403,0,0" TextWrapping="Wrap" Text="Downloads" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
+        <TextBlock x:Name="UploadsTableText" HorizontalAlignment="Left" Margin="396,232,0,0" TextWrapping="Wrap" Text="Uploads" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
+        <TextBlock x:Name="DownlaodsTableText" HorizontalAlignment="Left" Margin="381,404,0,0" TextWrapping="Wrap" Text="Downloads" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
         <Button x:Name="SignOutButton" Content="Sign Out" Background="Red" HorizontalAlignment="Left" Width="142" Margin="24,588,0,58" Height="Auto" Click="SignOutButton_Click"/>
         <Button x:Name="ReflectionButton" Content="About" HorizontalAlignment="Left" Margin="645,588,0,0" VerticalAlignment="Top" Width="231" Height="34" Click="ReflectionButton_Click"/>
     </Grid>

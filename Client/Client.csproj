@@ -67,9 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Download.cs" />
+    <Compile Include="Downloading.cs" />
+    <Compile Include="FilePartDownloading.cs" />
     <Compile Include="PersonAttribute.cs" />
-    <Compile Include="Upload.cs" />
+    <Compile Include="Uploading.cs" />
     <Compile Include="Views\FileDownloadView.cs" />
     <Compile Include="Views\FileView.cs" />
     <Compile Include="Views\UploadingFileView.cs" />

@@ -39,7 +39,45 @@ namespace Client
             InitializeComponent();
             BindingListViewToData();
             SetUploadListView();
-            //StartListenToRequests();
+            StartListenToRequests();
+        }
+
+        private void StartListenToRequests()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                //Create new Uploading instance - Manage all uploadings
+                Uploading uploading = new Uploading();
+
+                //Set uploading status events (Started/Finished)
+                uploading.UploadStartedEvent += UploadStarted;
+                uploading.UploadFinishedEvent += UploadFinished;
+
+                //Start listen to file uploading requests
+                uploading.StartTCPListen();
+            });
+        }
+
+        private void UploadFinished(string fileName)
+        {
+            //Invoke the delegate Asynchronously
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                //Update upload status to be 'idle'
+                ClientUtils.uploadingFilesDictionary[fileName].Status = Consts.IDLE_STATUS;
+                UploadingFilesListView.Items.Refresh();
+            }));
+        }
+
+        private void UploadStarted(string fileName)
+        {
+            //Invoke the delegate Asynchronously
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                //Update upload status to be 'uploading'
+                ClientUtils.uploadingFilesDictionary[fileName].Status = Consts.UPLOADING_FILE_STATUS;
+                UploadingFilesListView.Items.Refresh();
+            }));
         }
 
         private void SetUploadListView()
@@ -70,6 +108,7 @@ namespace Client
             List<FileSharingDetailsTO> fileSharingDetailsTOList = ClientUtils.GetFilesByName(fileName);
 
             searchingFilesResultList.Clear();
+            ClientUtils.searchingFilesResultDictionary.Clear();
 
             if (fileSharingDetailsTOList != null && fileSharingDetailsTOList.Count == 0)
             {
@@ -102,25 +141,19 @@ namespace Client
             Close();
         }
 
-        private void DownLoadButton_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (FileView f in FileSearchResultsListView.Items)
-            {
-                FileDownloadView downloadTableView = new FileDownloadView()
-                {
-                    FileName = f.FileName,
-                    Size = f.Size,
-                    Status = Consts.DOWNLOADING_FILE_STATUS
-                };
-                //if(!DownloadsView.Items.Contains(downloadTableView))
-                //    DownloadsView.Items.Add(downloadTableView);
-            }
-        }
-
-
-        //private void SetUploadListView()
+        //private void DownLoadButton_Click(object sender, RoutedEventArgs e)
         //{
-        //    List<FileTO> clientFiles = ClientUtils.LoadClientFiles();
+        //    foreach (FileView f in FileSearchResultsListView.Items)
+        //    {
+        //        FileDownloadView downloadTableView = new FileDownloadView()
+        //        {
+        //            FileName = f.FileName,
+        //            Size = f.Size,
+        //            Status = Consts.DOWNLOADING_FILE_STATUS
+        //        };
+        //        //if(!DownloadsView.Items.Contains(downloadTableView))
+        //        //    DownloadsView.Items.Add(downloadTableView);
+        //    }
         //}
 
         private void FileSearchResultsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -128,7 +161,19 @@ namespace Client
             if (MessageBox.Show(Consts.DOWNLOAD_CONFIRMATION_DIALOG_MESSAGE, "Download Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 FileView selectedFile = (FileView)FileSearchResultsListView.SelectedItem;
-                ClientUtils.DownloadFile(selectedFile.FileName);
+                //Create FileDownlaodView to show in downloadings listView
+                FileDownloadView fileDownloadView = new FileDownloadView();
+                fileDownloadView.FileName = selectedFile.FileName;
+                fileDownloadView.Size = selectedFile.Size;
+                fileDownloadView.Peers = selectedFile.Peers;
+                if (!ClientUtils.downloadingDictionary.ContainsKey(fileDownloadView.FileName))
+                {
+                    ClientUtils.downloadingDictionary.Add(fileDownloadView.FileName, fileDownloadView);
+                }
+                downloadingFiles.Add(fileDownloadView);
+                DownloadsFilesListView.Items.Refresh();
+                FileSharingDetailsTO fileSharingDetails = ClientUtils.GetFileToDownloadByName(selectedFile.FileName);
+                DownloadFile(fileSharingDetails);
             }
         }
 
@@ -142,6 +187,41 @@ namespace Client
 
             string aboutMessageToShow = ClientUtils.ShowAboutFileWithReflection();
             MessageBox.Show(aboutMessageToShow);
+        }
+
+        private void DownloadFile(FileSharingDetailsTO fileSharingDetails)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                Downloading downloading = new Downloading(fileSharingDetails);
+                downloading.DownloadFinishedEvent += DownloadFinished;
+                downloading.DownloadStartedEvent += DownloadStarted;
+                downloading.StartDownloadingFile();
+            });
+        }
+
+        private void DownloadStarted(string fileName)
+        {
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                ClientUtils.downloadingDictionary[fileName].StartTime = DateTime.Now;
+                ClientUtils.downloadingDictionary[fileName].Status = Consts.DOWNLOADING_FILE_STATUS;
+                DownloadsFilesListView.Items.Refresh();
+            }));
+        }
+
+        private void DownloadFinished(string fileName)
+        {
+            Dispatcher.BeginInvoke(new Action(delegate ()
+            {
+                ClientUtils.downloadingDictionary[fileName].Time = DateTime.Now - ClientUtils.downloadingDictionary[fileName].StartTime;
+                ClientUtils.downloadingDictionary[fileName].Status = Consts.DOWNLOADING_FILE_STATUS;
+                ClientUtils.downloadingDictionary[fileName].Kbps = (int)((ClientUtils.downloadingDictionary[fileName].Size / 1000) / 
+                    ClientUtils.downloadingDictionary[fileName].Time.TotalSeconds);
+                ClientUtils.downloadingDictionary[fileName].Status = Consts.DOWNLOAD_FILE_COMPLETED_STATUS;
+                DownloadsFilesListView.Items.Refresh();
+            }));
+
         }
     }
 }

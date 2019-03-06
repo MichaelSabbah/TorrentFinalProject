@@ -17,10 +17,28 @@ namespace Client.Views
         {
             get; set;
         }
+        public int Peers
+        {
+            get;set;
+        }
         public string Status
         {
             get;set;
         }
+        public TimeSpan Time
+        {
+            get;set;
+        }
+        public double Kbps
+        {
+            get;set;
+        }
+
+        public DateTime StartTime
+        {
+            get;set;
+        }
+
         public override bool Equals(object obj)
         {
             return FileName.Equals(((FileDownloadView)obj).FileName);
