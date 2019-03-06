@@ -47,7 +47,7 @@ namespace Client
             byte[] bytes = new byte[int.Parse(amountOfBytesToUpload)];
 
             //Get file path in local file system
-            string filePath = ClientUtils.uploadingFilesDictionary + "\\" + requestedFileName;
+            string filePath = ClientUtils.clientDetails.UploadPath + "\\" + requestedFileName;
 
             bool finishedReadingAndTransfering = false;
 
