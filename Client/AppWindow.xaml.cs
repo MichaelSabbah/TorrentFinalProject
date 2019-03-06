@@ -204,7 +204,7 @@ namespace Client
         {
             Dispatcher.BeginInvoke(new Action(delegate ()
             {
-                ClientUtils.downloadingDictionary[fileName].StartTime = DateTime.Now;
+                //ClientUtils.downloadingDictionary[fileName].StartTime = DateTime.Now;
                 ClientUtils.downloadingDictionary[fileName].Status = Consts.DOWNLOADING_FILE_STATUS;
                 DownloadsFilesListView.Items.Refresh();
             }));
@@ -214,7 +214,7 @@ namespace Client
         {
             Dispatcher.BeginInvoke(new Action(delegate ()
             {
-                ClientUtils.downloadingDictionary[fileName].Time = DateTime.Now - ClientUtils.downloadingDictionary[fileName].StartTime;
+                ClientUtils.downloadingDictionary[fileName].Time = DateTime.Now - DateTime.Now;// - ClientUtils.downloadingDictionary[fileName].StartTime;
                 ClientUtils.downloadingDictionary[fileName].Status = Consts.DOWNLOADING_FILE_STATUS;
                 ClientUtils.downloadingDictionary[fileName].Kbps = (int)((ClientUtils.downloadingDictionary[fileName].Size / 1000) / 
                     ClientUtils.downloadingDictionary[fileName].Time.TotalSeconds);

@@ -37,7 +37,6 @@ namespace Client
             int partSize = fileSize / currentlyDownloadingFile.Peers.Count;
             int remainingBytesToDownload = fileSize;
 
-            //MyDownload myDownload = new MyDownload { FileName = filename, Ips = ipList, Size = size, Status = "Starting" };
             DownloadStartedEvent(currentlyDownloadingFile.FileName);
 
             for (int index = 0; index < currentlyDownloadingFile.Peers.Count; index++)

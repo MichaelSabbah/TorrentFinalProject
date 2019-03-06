@@ -34,10 +34,6 @@ namespace Client.Views
             get;set;
         }
 
-        public DateTime StartTime
-        {
-            get;set;
-        }
 
         public override bool Equals(object obj)
         {

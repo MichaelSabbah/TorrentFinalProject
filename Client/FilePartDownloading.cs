@@ -58,8 +58,6 @@ namespace Client
                 streamWriter.WriteLine(amountOfBytes);
                 streamWriter.Flush();
 
-                //Debug.WriteLine("hi " + fileName + " " + partSize + " " + partFileOffset + " " + amountOfBytes);
-
                 int receivedAmountBytes = 0;
                 receivedAmountBytes += networkStream.Read(bytes, 0, bytes.Length); // Reading requested file part into bytes array
                 while (receivedAmountBytes < bytes.Length)
