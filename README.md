@@ -1,5 +1,5 @@
 # TorrentFinalProject
-The whole project is divided to 4 main sub projects.
+The whole project is divided to 4 main sub projects:
 1) WebPortal - Administrator management system implemented with ASP. Used to add, update and delete users.
    In addition, the web portal provides information about the files shared between users.
 2) Mediation Server - WCF Services for handling clients request.
